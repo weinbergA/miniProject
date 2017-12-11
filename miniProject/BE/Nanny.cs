@@ -8,7 +8,7 @@ namespace BE
         string lastName;
         string firstName;
         DateTime dateOfBirth;
-        int phoneNumberr;
+        int phoneNumber;
         string address;
         bool elevator;
         int floor;
