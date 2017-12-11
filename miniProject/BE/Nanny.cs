@@ -35,7 +35,7 @@ namespace BE
                 {
                     str += (workingHours[0, i]).DayOfWeek + ": ";
                     str += (workingHours[0, i]).Hour + " - ";
-                    str += (workingHours[1, i]).Hour;
+                    str += (workingHours[1, i]).Hour + "\n";
                 }
             }
             return str;
