@@ -20,7 +20,7 @@ namespace BE
             string str = "";
             str += "\nName: " + firstName + lastName;
             str += "\nneeded address for nanny in the area of " + nannyRequestedAddress;
-            str += "/nneeded houres:";
+            str += "\nneeded houres:";
             for (int i = 0; i < 6; i++)
             {
                 if (isNeedNannyToday[i])
