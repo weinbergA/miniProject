@@ -32,5 +32,28 @@ namespace BE
             }
             return str;
         }
+        public Mother(int motherId,string firstN,string lastN,int phone,string motherAddress,string requestedAddress,bool[] needNannyDays,DateTime[,] houresNeeds,string note)
+        {
+            id = motherId;
+            firstName = firstN;
+            lastName = lastN;
+            phoneNumber = phone;
+            address = motherAddress;
+            nannyRequestedAddress = requestedAddress;
+
+            for (int i = 0; i < 6; i++)
+                isNeedNannyToday[i] = needNannyDays[i];
+
+            for (int i = 0; i < 6; i++)
+            {
+                neededHours[0, i] = houresNeeds[0, i];
+                neededHours[1, i] = houresNeeds[1, i];
+            }
+            notes = note;
+            {
+
+            }
+           
+        }
     }
 }

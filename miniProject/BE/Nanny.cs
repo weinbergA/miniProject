@@ -10,7 +10,7 @@ namespace BE
         DateTime dateOfBirth;
         int phoneNumber;
         string address;
-        bool elevator;
+        bool isElevator;
         int floor;
         double experienceYears;
         int maxChildren;
@@ -39,6 +39,33 @@ namespace BE
                 }
             }
             return str;
+        }
+        public Nanny(int nannyId,string firstN,string lastN,DateTime birth,int phone,string nannyAddress,bool elevator,int nannyFloor,double experience,int maxOfChildren,double minAge,double maxAge,bool isHourlyRate,double rateHourly,double rateMothly,bool[]workDays,DateTime[,] hours,bool holidays,string nannyReviews)
+        {
+            id = nannyId;
+            firstName = firstN;
+            lastName = lastN;
+            dateOfBirth = birth;
+            phoneNumber = phone;
+            address = nannyAddress;
+            isElevator = elevator;
+            floor = nannyFloor;
+            experienceYears = experience;
+            maxChildren = maxOfChildren;
+            maxAgeChildren = maxAge;
+            minAgeChildren = minAge;
+            hourlyRateAccepting = isHourlyRate;
+            hourlyRate = rateHourly;
+            monthlyRate = rateMothly;
+            for (int i = 0; i < 6; i++)
+                isWorkingToday[i] = workDays[i];
+            for (int i = 0; i < 6; i++)
+            {
+                workingHours[0, i] = hours[0, i];
+                workingHours[1, i] = hours[1, i];
+            }
+            tamatHolidays = holidays;
+            reviews = nannyReviews;
         }
     }
 }

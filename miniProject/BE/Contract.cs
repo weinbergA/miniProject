@@ -45,12 +45,12 @@ namespace BE
             firstMeeting = meeting;
             isContractSighed = sighed;
             monthlyOrHourly = mOrh;
+
             if (monthlyOrHourly == 0)
-
                 hourlyRate = hourly;
-
             else
                 monthlyRate = monthly;
+
             contrcatBeggining = strat;
             contractFinshing = end;
            
