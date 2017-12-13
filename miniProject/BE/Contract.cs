@@ -5,8 +5,8 @@ using System.Text;
 namespace BE
 {
     
-    enum hourlyOrMonthly { hourly,monthly}
-    class Contract
+    public enum hourlyOrMonthly { hourly,monthly}
+     public class Contract
     {
         static int contractNumberStrat = 12345678;
         int contractNumber;
@@ -40,6 +40,7 @@ namespace BE
         }
         public Contract(int nanny,int child,bool meeting,bool sighed,hourlyOrMonthly mOrh,int hourly, int monthly,DateTime strat,DateTime end)
         {
+            contractNumber = contractNumberStrat++;
             childId = child;
             nannyId = nanny;
             firstMeeting = meeting;
@@ -55,8 +56,6 @@ namespace BE
             contractFinshing = end;
            
         }
-
-
-
+        
     }
 }

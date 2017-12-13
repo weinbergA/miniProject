@@ -57,13 +57,16 @@ namespace BE
             hourlyRateAccepting = isHourlyRate;
             hourlyRate = rateHourly;
             monthlyRate = rateMothly;
+
             for (int i = 0; i < 6; i++)
                 isWorkingToday[i] = workDays[i];
+
             for (int i = 0; i < 6; i++)
             {
                 workingHours[0, i] = hours[0, i];
                 workingHours[1, i] = hours[1, i];
             }
+
             tamatHolidays = holidays;
             reviews = nannyReviews;
         }
