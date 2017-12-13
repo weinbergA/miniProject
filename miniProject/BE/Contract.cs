@@ -10,9 +10,9 @@ namespace BE
     {
         static int contractNumberStrat = 12345678;
         int contractNumber;
-        int nannyId;
-        
-        int childId;
+        public int nannyId;
+        public int motherId;
+        public int childId;
         bool firstMeeting;
         bool isContractSighed;
         double hourlyRate;
@@ -42,7 +42,7 @@ namespace BE
         {
             contractNumber = contractNumberStrat++;
             childId = child;
-            nannyId = nanny;
+             nannyId = nanny;
             firstMeeting = meeting;
             isContractSighed = sighed;
             monthlyOrHourly = mOrh;

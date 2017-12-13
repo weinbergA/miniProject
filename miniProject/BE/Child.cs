@@ -6,8 +6,8 @@ namespace BE
 {
     public class Child
     {
-        int id;
-        int motherId;
+        public int id;
+        public int motherId;
         string firstName;
         string lastName;
         DateTime dateOfBirth;

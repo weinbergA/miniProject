@@ -6,7 +6,7 @@ namespace BE
 {
     public class Mother
     {
-        int id;
+        public int id;
         string lastName;
         string firstName;
         int phoneNumber;

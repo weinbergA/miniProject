@@ -4,7 +4,7 @@ namespace BE
 {
     public class Nanny
     {
-        int id;
+        public int id;
         string lastName;
         string firstName;
         DateTime dateOfBirth;

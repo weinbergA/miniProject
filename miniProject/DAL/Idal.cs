@@ -28,5 +28,8 @@ namespace DAL
         List<BE.Child> childrenByMother(BE.Mother mother);
         List<BE.Contract> contractsList();
 
+        //BY given  id of child return his mother 
+        BE.Mother motherOfTheChild(int childId);
+       
     }
 }
