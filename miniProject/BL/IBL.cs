@@ -10,17 +10,17 @@ namespace BL
         void removeNanny(BE.Nanny nanny);
         void updateNanny(BE.Nanny nanny);
 
-        void addMother(BE.Mother nanny);
-        void removeMother(BE.Mother nanny);
-        void updateMother(BE.Mother nanny);
+        void addMother(BE.Mother mother);
+        void removeMother(BE.Mother mother);
+        void updateMother(BE.Mother mother);
 
-        void addChild(BE.Child nanny);
-        void removeChild(BE.Child nanny);
-        void updateChild(BE.Child nanny);
+        void addChild(BE.Child child);
+        void removeChild(BE.Child child);
+        void updateChild(BE.Child child);
 
-        void addContract(BE.Contract nanny);
-        void removeContract(BE.Contract nanny);
-        void updateContract(BE.Contract nanny);
+        void addContract(BE.Contract contract);
+        void removeContract(BE.Contract contract);
+        void updateContract(BE.Contract contract);
 
         List<BE.Nanny> nanniesList();
         List<BE.Mother> mothersList();
