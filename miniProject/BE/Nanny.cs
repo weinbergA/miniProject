@@ -26,6 +26,7 @@ namespace BE
 
         public double HourlyRate { get => hourlyRate; set => hourlyRate = value; }
         public double MonthlyRate { get => monthlyRate; set => monthlyRate = value; }
+        public int MaxChildren { get => maxChildren; set => maxChildren = value; }
 
         public override string ToString()
         {

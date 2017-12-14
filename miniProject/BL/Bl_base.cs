@@ -62,6 +62,10 @@ namespace BL
             BE.Mother mother = dal.getMotherById(contract.motherId);
             BE.Nanny nanny = dal.GetNannyById(contract.nannyId);
 
+
+            if (nanny.MaxChildren == (dal.contractsList().FindAll(x => x.nannyId == nanny.id).Count))
+                throw new Exception("This nanny is full");
+
             if (nanny.hourlyRateAccepting && contract.monthlyOrHourly == BE.hourlyOrMonthly.hourly)
             {
                 double sumHours = 0;
@@ -72,20 +76,42 @@ namespace BL
             }
             else
                 contract.MonthlyRate = nanny.MonthlyRate;
+
             int sumChild = (dal.contractsList()).FindAll(x => x.motherId == mother.id && x.nannyId == nanny.id).Count;
-            contract.motherId
-
-
+            contract.MonthlyRate -= sumChild * 0.02;
+            dal.addContract(contract);
         }
-        void removeContract(BE.Contract contract);
-        void updateContract(BE.Contract contract);
+        void removeContract(BE.Contract contract)
+        {
+            dal.removeContract(contract);
+        }
+        void updateContract(BE.Contract contract)
+        {
+            dal.updateContract(contract);
+        }
 
-        List<BE.Nanny> nanniesList();
-        List<BE.Mother> mothersList();
-        List<BE.Child> childrenByMother(BE.Mother mother);
-        List<BE.Contract> contractsList();
+        List<BE.Nanny> nanniesList()
+        {
+            return dal.nanniesList();
+        }
+        List<BE.Mother> mothersList()
+        {
+            return  dal.mothersList();
+        }
+        List<BE.Child> childrenByMother(BE.Mother mother)
+        {
+            return dal.childrenByMother( mother);
+        }
+        List<BE.Contract> contractsList()
+        {
+            return dal.contractsList();
+        }
 
         //BY given  id of child return his mother 
-        BE.Mother motherOfTheChild(int childId);
+        BE.Mother motherOfTheChild(int childId)
+        {
+            return dal.motherOfTheChild(childId);
+        }
+
     }
 }
