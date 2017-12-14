@@ -8,8 +8,7 @@ namespace BE
     public enum hourlyOrMonthly { hourly,monthly}
      public class Contract
     {
-        static int contractNumberStrat = 12345678;
-        int contractNumber;
+        public int contractNumber;
         public int nannyId;
         public int motherId;
         public int childId;
@@ -40,7 +39,6 @@ namespace BE
         }
         public Contract(int nanny,int child,bool meeting,bool sighed,hourlyOrMonthly mOrh,int hourly, int monthly,DateTime strat,DateTime end)
         {
-            contractNumber = contractNumberStrat++;
             childId = child;
              nannyId = nanny;
             firstMeeting = meeting;
