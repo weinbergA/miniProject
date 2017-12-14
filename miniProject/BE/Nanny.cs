@@ -7,7 +7,7 @@ namespace BE
         public int id;
         string lastName;
         string firstName;
-        DateTime dateOfBirth;
+        public DateTime dateOfBirth;
         int phoneNumber;
         string address;
         bool isElevator;
