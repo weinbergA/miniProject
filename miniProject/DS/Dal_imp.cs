@@ -130,5 +130,13 @@ namespace DS
         {
             return DataSource.mothersList.Find(x => x.id == childMotherId);
         }
+        public BE.Mother getMotherById(int motherId)
+        {
+            return DataSource.mothersList.Find(x => x.id == motherId);
+        }
+        public BE.Nanny GetNannyById(int nannyId)
+        {
+            return DataSource.nanniesList.Find(x => x.id == nannyId);
+        }
     }
 }

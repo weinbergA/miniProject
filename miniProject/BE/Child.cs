@@ -10,7 +10,7 @@ namespace BE
         public int motherId;
         string firstName;
         string lastName;
-        DateTime dateOfBirth;
+        public DateTime dateOfBirth;
         bool specialNeeds;
         string specialNeedsDescrition;
         public override string ToString()

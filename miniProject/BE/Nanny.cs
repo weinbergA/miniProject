@@ -16,13 +16,17 @@ namespace BE
         int maxChildren;
         double minAgeChildren;
         double maxAgeChildren;
-        bool hourlyRateAccepting;
+        public bool hourlyRateAccepting;
         double hourlyRate;
         double monthlyRate;
         bool[] isWorkingToday = new bool[6];
         DateTime[,] workingHours = new DateTime[2,6];
         bool tamatHolidays;
         string reviews;
+
+        public double HourlyRate { get => hourlyRate; set => hourlyRate = value; }
+        public double MonthlyRate { get => monthlyRate; set => monthlyRate = value; }
+
         public override string ToString()
         {
             string str = "";

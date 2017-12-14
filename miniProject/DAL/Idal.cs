@@ -30,6 +30,7 @@ namespace DAL
 
         //BY given  id of child return his mother 
         BE.Mother motherOfTheChild(int childId);
+        BE.Mother getMotherById(int motherId);
        
     }
 }

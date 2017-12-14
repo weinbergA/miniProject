@@ -13,7 +13,7 @@ namespace BE
         string address;
         string nannyRequestedAddress;
         bool[] isNeedNannyToday = new bool[6];
-        DateTime[,] neededHours = new DateTime[2, 6];
+        public DateTime[,] neededHours = new DateTime[2, 6];
         string notes;
         public override string ToString()
         {

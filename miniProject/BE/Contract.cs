@@ -16,9 +16,13 @@ namespace BE
         bool isContractSighed;
         double hourlyRate;
         double monthlyRate;
-        hourlyOrMonthly monthlyOrHourly;
+        public hourlyOrMonthly monthlyOrHourly;
         DateTime contrcatBeggining;
         DateTime contractFinshing;
+
+        public double HourlyRate { get => hourlyRate; set => hourlyRate = value; }
+        public double MonthlyRate { get => monthlyRate; set => monthlyRate = value; }
+
         public override string ToString()
         {
             string str = "";
