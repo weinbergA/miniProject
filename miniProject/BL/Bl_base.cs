@@ -1,63 +1,135 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BL
 {
     class Bl_base : IBL
     {
-        DS.Dal_imp dal = new DS.Dal_imp();
+        
+        DAL.Dal_imp dal = new DAL.Dal_imp();
 
-        void addNanny(BE.Nanny nanny)
+        public void addNanny(BE.Nanny nanny)
         {
-            DateTime now = DateTime.Now;
-            if (!(now.Year - nanny.dateOfBirth.Year >= 18))
+            if (yearsOld(nanny.dateOfBirth) < 18)
                 throw new Exception("Nanny can't be under 18 years old");
-            dal.addNanny(nanny);
+            try
+            {
+                dal.addNanny(nanny);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
-        void removeNanny(BE.Nanny nanny)
+        public void removeNanny(BE.Nanny nanny)
         {
-            dal.removeNanny(nanny);
-        }
-
-
-        void updateNanny(BE.Nanny nanny)
-        {
-            dal.updateNanny(nanny);
-        }
-
-        void addMother(BE.Mother mother)
-        {
-            dal.updateMother(mother);
-        }
-        void removeMother(BE.Mother mother)
-        {
-            dal.removeMother(mother);
-        }
-
-        void updateMother(BE.Mother mother)
-        {
-            dal.updateMother(mother);
+            try
+            {
+                dal.removeNanny(nanny);
+            }
+           
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        void addChild(BE.Child child)
+
+        public void updateNanny(BE.Nanny nanny)
         {
-            DateTime now = DateTime.Now;
-            if (now.Month - child.dateOfBirth.Month < 3)
+            try
+            {
+                dal.updateNanny(nanny);
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void addMother(BE.Mother mother)
+        {
+            try
+            {
+                dal.updateMother(mother);
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public void removeMother(BE.Mother mother)
+        {
+            try
+            {
+                dal.removeMother(mother);
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void updateMother(BE.Mother mother)
+        {
+            try
+            {
+                dal.updateMother(mother);
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
+        }
+
+        public void addChild(BE.Child child)
+        {
+            if (monthOld(child.dateOfBirth) < 3)
                 throw new Exception("The child can't under 3 months");
-            dal.addChild(child);
+            try
+            {
+                dal.addChild(child);
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
-        void removeChild(BE.Child child)
+        public void removeChild(BE.Child child)
         {
-            dal.removeChild(child);
+            try
+            {
+                dal.removeChild(child);
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
-        void updateChild(BE.Child child)
+        public void updateChild(BE.Child child)
         {
-            dal.updateChild(child);
+            try
+            {
+                dal.updateChild(child);
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
 
-        void addContract(BE.Contract contract)
+        public void addContract(BE.Contract contract)
         {
             BE.Mother mother = dal.getMotherById(contract.motherId);
             BE.Nanny nanny = dal.GetNannyById(contract.nannyId);
@@ -79,39 +151,115 @@ namespace BL
 
             int sumChild = (dal.contractsList()).FindAll(x => x.motherId == mother.id && x.nannyId == nanny.id).Count;
             contract.MonthlyRate -= sumChild * 0.02;
-            dal.addContract(contract);
+            try
+            {
+                dal.addContract(contract);
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+           
         }
-        void removeContract(BE.Contract contract)
+        public void removeContract(BE.Contract contract)
         {
-            dal.removeContract(contract);
+            try
+            {
+                dal.removeContract(contract);
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
-        void updateContract(BE.Contract contract)
+        public void updateContract(BE.Contract contract)
         {
-            dal.updateContract(contract);
+            try
+            {
+                dal.updateContract(contract);
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        List<BE.Nanny> nanniesList()
+        public List<BE.Nanny> nanniesList()
         {
-            return dal.nanniesList();
+            try
+            {
+                return dal.nanniesList();
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
-        List<BE.Mother> mothersList()
+        public List<BE.Mother> mothersList()
         {
-            return  dal.mothersList();
+            try
+            {
+                return dal.mothersList();
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
-        List<BE.Child> childrenByMother(BE.Mother mother)
+        public List<BE.Child> childrenByMother(BE.Mother mother)
         {
-            return dal.childrenByMother( mother);
+            try
+            {
+                return dal.childrenByMother(mother);
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
-        List<BE.Contract> contractsList()
+        public List<BE.Contract> contractsList()
         {
-            return dal.contractsList();
+            try
+            {
+                return dal.contractsList();
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         //BY given  id of child return his mother 
-        BE.Mother motherOfTheChild(int childId)
+        public BE.Mother motherOfTheChild(int childId)
         {
-            return dal.motherOfTheChild(childId);
-        }
+            try
+            {
+                return dal.motherOfTheChild(childId);
+            }
 
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        int monthsOld(DateTime dateOfBirth)
+        {
+            DateTime now = DateTime.Now;
+            int years = now.Year - dateOfBirth.Year;
+            int month = now.Month - dateOfBirth.Month;
+            return (years * 12 + month);
+        }
+        int yearsOld(DateTime dateOfBirth)
+        {
+            return monthsOld(dateOfBirth) / 12;
+        }
     }
 }

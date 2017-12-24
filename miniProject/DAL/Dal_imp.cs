@@ -1,142 +1,143 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DS
+namespace DAL
 {
-    
-    public class Dal_imp : DAL.Idal
+
+    public class Dal_imp : Idal
     {
         static int contractNumberStrat = 12345678;
         public void addNanny(BE.Nanny nanny)
         {
-            BE.Nanny temp = DataSource.nanniesList.Find(x => x.id == nanny.id);
+            
+            BE.Nanny temp = DS.DataSource.nanniesList.Find(x => x.id == nanny.id);
             if (temp == null)
-                DataSource.nanniesList.Add(nanny);
+                DS.DataSource.nanniesList.Add(nanny);
             else
                 throw new System.InvalidOperationException("This nanny already exist");
         }
         public void removeNanny(BE.Nanny nanny)
         {
-            BE.Contract temp = DataSource.contractsList.Find(x => x.nannyId == nanny.id);
+            BE.Contract temp = DS.DataSource.contractsList.Find(x => x.nannyId == nanny.id);
             if (temp == null)
-                DataSource.nanniesList.Remove(nanny);//removing if only if she have no contruct
+                DS.DataSource.nanniesList.Remove(nanny);//removing if only if she have no contruct
             else
                 throw new System.InvalidOperationException("You can't delete nanny with active contract");
         }
         public void updateNanny(BE.Nanny nanny)
         {
-            BE.Nanny temp = DataSource.nanniesList.Find(x => x.id == nanny.id);
+            BE.Nanny temp = DS.DataSource.nanniesList.Find(x => x.id == nanny.id);
             if (temp == null)
                 throw new System.InvalidOperationException("The is no nanny to update");
-            DataSource.nanniesList.Remove(temp);
-            DataSource.nanniesList.Add(nanny);
+            DS.DataSource.nanniesList.Remove(temp);
+            DS.DataSource.nanniesList.Add(nanny);
         }
-        
+
         public void addMother(BE.Mother mother)
         {
-            BE.Mother temp = DataSource.mothersList.Find(x => x.id == mother.id);
+            BE.Mother temp = DS.DataSource.mothersList.Find(x => x.id == mother.id);
             if (temp == null)
-                DataSource.mothersList.Add(mother);
+                DS.DataSource.mothersList.Add(mother);
             else
                 throw new System.InvalidOperationException("This mother already exist");
         }
 
         public void removeMother(BE.Mother mother)
         {
-            DataSource.mothersList.Remove(mother);
-            DataSource.childrenList.RemoveAll(x => x.motherId == mother.id);
-            DataSource.contractsList.RemoveAll(x => x.motherId == mother.id);
+            DS.DataSource.mothersList.Remove(mother);
+            DS.DataSource.childrenList.RemoveAll(x => x.motherId == mother.id);
+            DS.DataSource.contractsList.RemoveAll(x => x.motherId == mother.id);
         }
 
 
         public void updateMother(BE.Mother mother)
         {
-            BE.Mother temp = DataSource.mothersList.Find(x => x.id == mother.id);
+            BE.Mother temp = DS.DataSource.mothersList.Find(x => x.id == mother.id);
             if (temp == null)
                 throw new System.InvalidOperationException("The is no mother to update");
-            DataSource.mothersList.Remove(temp);
-            DataSource.mothersList.Add(mother);
+            DS.DataSource.mothersList.Remove(temp);
+            DS.DataSource.mothersList.Add(mother);
         }
 
         public void addChild(BE.Child child)
         {
-            BE.Child temp = DataSource.childrenList.Find(x => x.id == child.id);
+            BE.Child temp = DS.DataSource.childrenList.Find(x => x.id == child.id);
             if (temp == null)
-                DataSource.childrenList.Add(child);
+                DS.DataSource.childrenList.Add(child);
             else
                 throw new System.InvalidOperationException("This child already exist");
         }
         public void removeChild(BE.Child child)
         {
-            DataSource.contractsList.RemoveAll(x => x.childId == child.id);
-            DataSource.childrenList.Remove(child);
+            DS.DataSource.contractsList.RemoveAll(x => x.childId == child.id);
+            DS.DataSource.childrenList.Remove(child);
         }
         public void updateChild(BE.Child child)
         {
-            BE.Child temp = DataSource.childrenList.Find(x => x.id == child.id);
+            BE.Child temp = DS.DataSource.childrenList.Find(x => x.id == child.id);
             if (temp == null)
                 throw new System.InvalidOperationException("The is no child to update");
-            DataSource.childrenList.Remove(temp);
-            DataSource.childrenList.Add(child);
+            DS.DataSource.childrenList.Remove(temp);
+            DS.DataSource.childrenList.Add(child);
         }
 
         public void addContract(BE.Contract contract)
         {
-            BE.Nanny temp1 = DataSource.nanniesList.Find(x => x.id == contract.nannyId);
+            BE.Nanny temp1 = DS.DataSource.nanniesList.Find(x => x.id == contract.nannyId);
             if (temp1 == null)
                 throw new System.InvalidOperationException("wrong data, no nanny with this details");
-            BE.Mother temp2 = DataSource.mothersList.Find(x => x.id == contract.motherId);
+            BE.Mother temp2 = DS.DataSource.mothersList.Find(x => x.id == contract.motherId);
             if (temp2 == null)
                 throw new System.InvalidOperationException("wrong data, no mother with this details");
             contract.contractNumber = contractNumberStrat++;
-            DataSource.contractsList.Add(contract);
+            DS.DataSource.contractsList.Add(contract);
         }
         public void removeContract(BE.Contract contract)
         {
-            DataSource.contractsList.Remove(contract);
+            DS.DataSource.contractsList.Remove(contract);
         }
         public void updateContract(BE.Contract contract)
         {
-            BE.Contract temp = DataSource.contractsList.Find(x => x.contractNumber == contract.contractNumber);
+            BE.Contract temp = DS.DataSource.contractsList.Find(x => x.contractNumber == contract.contractNumber);
             if (temp == null)
                 throw new System.InvalidOperationException("The is no contract to update");
-            DataSource.contractsList.Remove(temp);
-            DataSource.contractsList.Add(contract);
+            DS.DataSource.contractsList.Remove(temp);
+            DS.DataSource.contractsList.Add(contract);
         }
 
         public List<BE.Nanny> nanniesList()
         {
-            return DataSource.nanniesList;
+            return DS.DataSource.nanniesList;
         }
         public List<BE.Mother> mothersList()
         {
-            return DataSource.mothersList;
+            return DS.DataSource.mothersList;
         }
         public List<BE.Contract> contractsList()
         {
-            return DataSource.contractsList;
+            return DS.DataSource.contractsList;
         }
 
         public List<BE.Child> childrenByMother(BE.Mother mother)
         {
             List<BE.Child> temp = new List<BE.Child>();
-            temp = DataSource.childrenList.FindAll(x => x.motherId == mother.id);
+            temp = DS.DataSource.childrenList.FindAll(x => x.motherId == mother.id);
             return temp;
         }
-        
+
 
         public BE.Mother motherOfTheChild(int childMotherId)
         {
-            return DataSource.mothersList.Find(x => x.id == childMotherId);
+            return DS.DataSource.mothersList.Find(x => x.id == childMotherId);
         }
         public BE.Mother getMotherById(int motherId)
         {
-            return DataSource.mothersList.Find(x => x.id == motherId);
+            return DS.DataSource.mothersList.Find(x => x.id == motherId);
         }
         public BE.Nanny GetNannyById(int nannyId)
         {
-            return DataSource.nanniesList.Find(x => x.id == nannyId);
+            return DS.DataSource.nanniesList.Find(x => x.id == nannyId);
         }
     }
 }
