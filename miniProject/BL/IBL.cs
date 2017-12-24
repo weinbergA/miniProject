@@ -29,5 +29,7 @@ namespace BL
 
         //BY given  id of child return his mother 
         BE.Mother motherOfTheChild(int childId);
+
+        List<BE.Nanny> listOfMatchingNannies(BE.Mother mother);
     }
 }

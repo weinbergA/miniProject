@@ -19,10 +19,11 @@ namespace BE
         public bool hourlyRateAccepting;
         double hourlyRate;
         double monthlyRate;
-        bool[] isWorkingToday = new bool[6];
-        DateTime[,] workingHours = new DateTime[2,6];
+        public bool[] isWorkingToday = new bool[6];
+        public DateTime[,] workingHours = new DateTime[2,6];
         bool tamatHolidays;
         string reviews;
+        
 
         public double HourlyRate { get => hourlyRate; set => hourlyRate = value; }
         public double MonthlyRate { get => monthlyRate; set => monthlyRate = value; }

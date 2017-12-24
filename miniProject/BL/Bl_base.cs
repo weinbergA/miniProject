@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BL
 {
@@ -89,7 +90,7 @@ namespace BL
 
         public void addChild(BE.Child child)
         {
-            if (monthOld(child.dateOfBirth) < 3)
+            if (monthsOld(child.dateOfBirth) < 3)
                 throw new Exception("The child can't under 3 months");
             try
             {
@@ -261,5 +262,63 @@ namespace BL
         {
             return monthsOld(dateOfBirth) / 12;
         }
+
+        public List<BE.Nanny> listOfMatchingNannies(BE.Mother mother)
+        {
+            List<BE.Nanny> matchingNannies = new List<BE.Nanny>();
+            foreach (var nanny in nanniesList())
+            {
+                bool matching = true;
+                for (int i = 0; i < 6; i++)
+                {
+                    //checking matching by days
+                    if (mother.isNeedNannyToday[i] == true && nanny.isWorkingToday[i] != true)
+                        matching = false;
+                }
+                if (matching)
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        ////checking matching by enter and exit hour
+                        if (mother.neededHours[0, i].Hour < nanny.workingHours[0, i].Hour
+                            || mother.neededHours[1, i].Hour > nanny.workingHours[1, i].Hour)
+                            matching = false;
+                    }
+                }
+                if (matching)
+                    matchingNannies.Add(nanny);
+
+            }
+            return matchingNannies;
+        }
+        double overlapping(DateTime[,] nanny, DateTime[,] mother)
+        {
+            int sumOverlapping = 0;
+            for (int i = 0; i < 6; i++)
+            {
+                sumOverlapping += Math.Min(nanny[1, i].Hour, mother[1, i].Hour) -
+                    Math.Max(nanny[0, i].Hour, mother[0, i].Hour);
+            }
+            return sumOverlapping;
+        }
+        public List<BE.Nanny> bestDefaultsNannies(BE.Mother mother)
+        {
+            List<BE.Nanny> nannies = new List<BE.Nanny>();
+            var overlappingHours = from nanny in nanniesList()
+                                   select new { Nanny = nanny,
+                                       matchingHours = 
+                                       overlapping(nanny.workingHours, mother.neededHours) };
+
+            var list = overlappingHours.ToList();
+
+            for (int i = 0; i < 5; i++)
+            {
+                double max = list.Max(item => item.matchingHours);
+                nannies.Add(list.First(t => max == t.matchingHours).Nanny);
+                list.Remove(list.First(t => t.matchingHours == max));
+            }
+            return nannies;
+        }
+        
     }
 }
