@@ -319,6 +319,31 @@ namespace BL
             }
             return nannies;
         }
-        
+
+        public List<BE.Nanny> bestNannies(BE.Mother mother)
+        {
+            List<BE.Nanny> nannies = new List<BE.Nanny>();
+
+            if (listOfMatchingNannies(mother).Count > 5)
+                nannies = listOfMatchingNannies(mother);
+            else
+                nannies = bestDefaultsNannies(mother);
+
+            var nanniesDistans = (from nanny in nannies
+                                  select new
+                                  {
+                                      thisNanny = nanny,
+                                      distance = Main.Distance.Getdistance(mother.address, nanny.address)
+                                  }).ToList();
+
+            nannies = new List<BE.Nanny>();
+
+            nanniesDistans.Sort((x, y) => x.distance.CompareTo(y.distance));
+
+            foreach (var item in nanniesDistans)
+                nannies.Add(item.thisNanny);
+
+            return nannies;
+        }
     }
 }

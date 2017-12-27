@@ -9,7 +9,7 @@ namespace BE
         string firstName;
         public DateTime dateOfBirth;
         int phoneNumber;
-        string address;
+        public string address;
         bool isElevator;
         int floor;
         double experienceYears;

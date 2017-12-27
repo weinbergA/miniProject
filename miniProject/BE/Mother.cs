@@ -10,7 +10,7 @@ namespace BE
         string lastName;
         string firstName;
         int phoneNumber;
-        string address;
+        public string address;
         string nannyRequestedAddress;
         public bool[] isNeedNannyToday = new bool[6];
         public DateTime[,] neededHours = new DateTime[2, 6];
