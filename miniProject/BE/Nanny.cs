@@ -14,14 +14,14 @@ namespace BE
         int floor;
         double experienceYears;
         int maxChildren;
-        double minAgeChildren;
-        double maxAgeChildren;
+        public int minAgeChildren;
+        public int maxAgeChildren;
         public bool hourlyRateAccepting;
         double hourlyRate;
         double monthlyRate;
         public bool[] isWorkingToday = new bool[6];
         public DateTime[,] workingHours = new DateTime[2,6];
-        bool tamatHolidays;
+        public bool tamatHolidays;
         string reviews;
         
 
@@ -46,7 +46,7 @@ namespace BE
             }
             return str;
         }
-        public Nanny(int nannyId,string firstN,string lastN,DateTime birth,int phone,string nannyAddress,bool elevator,int nannyFloor,double experience,int maxOfChildren,double minAge,double maxAge,bool isHourlyRate,double rateHourly,double rateMothly,bool[]workDays,DateTime[,] hours,bool holidays,string nannyReviews)
+        public Nanny(int nannyId,string firstN,string lastN,DateTime birth,int phone,string nannyAddress,bool elevator,int nannyFloor,double experience,int maxOfChildren,int minAge,int maxAge,bool isHourlyRate,double rateHourly,double rateMothly,bool[]workDays,DateTime[,] hours,bool holidays,string nannyReviews)
         {
             id = nannyId;
             firstName = firstN;

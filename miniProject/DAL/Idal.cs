@@ -25,12 +25,16 @@ namespace DAL
 
         List<BE.Nanny> nanniesList();
         List<BE.Mother> mothersList();
-        List<BE.Child> childrenByMother(BE.Mother mother);
+        List<BE.Child> childrenList();
+       List<BE.Child> childrenByMother(BE.Mother mother);
         List<BE.Contract> contractsList();
 
         //BY given  id of child return his mother 
         BE.Mother motherOfTheChild(int childId);
         BE.Mother getMotherById(int motherId);
+
+        IEnumerable<BE.Contract> contrantsByCondition(Func<BE.Contract, bool> predicate = null);
+
        
     }
 }

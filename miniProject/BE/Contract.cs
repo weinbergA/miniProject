@@ -13,7 +13,7 @@ namespace BE
         public int motherId;
         public int childId;
         bool firstMeeting;
-        bool isContractSighed;
+        public bool isContractSighed;
         double hourlyRate;
         double monthlyRate;
         public hourlyOrMonthly monthlyOrHourly;

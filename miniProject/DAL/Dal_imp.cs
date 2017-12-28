@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace DAL
 {
@@ -118,6 +119,10 @@ namespace DAL
         {
             return DS.DataSource.contractsList;
         }
+        public List<BE.Child> childrenList()
+        {
+            return DS.DataSource.childrenList;
+        }
 
         public List<BE.Child> childrenByMother(BE.Mother mother)
         {
@@ -138,6 +143,18 @@ namespace DAL
         public BE.Nanny GetNannyById(int nannyId)
         {
             return DS.DataSource.nanniesList.Find(x => x.id == nannyId);
+        }
+
+        public BE.Child getChildByID(int childId)
+        {
+            return DS.DataSource.childrenList.Find(x => x.id == childId);
+        }
+
+        public IEnumerable<BE.Contract> contrantsByCondition(Func<BE.Contract, bool> predicate = null)
+        {
+            if (predicate == null)
+                return DS.DataSource.contractsList.AsEnumerable();
+            return DS.DataSource.contractsList.Where(predicate);
         }
     }
 }

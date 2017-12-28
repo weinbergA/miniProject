@@ -134,7 +134,12 @@ namespace BL
         {
             BE.Mother mother = dal.getMotherById(contract.motherId);
             BE.Nanny nanny = dal.GetNannyById(contract.nannyId);
+            BE.Child child = dal.getChildByID(contract.childId);
 
+            int childAge = monthsOld(child.dateOfBirth);
+
+            if (nanny.minAgeChildren > childAge || nanny.maxAgeChildren < childAge)
+                throw new Exception("The age of the child not compatible with accepting ages of the nanny");
 
             if (nanny.MaxChildren == (dal.contractsList().FindAll(x => x.nannyId == nanny.id).Count))
                 throw new Exception("This nanny is full");
@@ -206,6 +211,18 @@ namespace BL
             try
             {
                 return dal.mothersList();
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public List<BE.Child> childrenList()
+        {
+            try
+            {
+                return dal.childrenList();
             }
 
             catch (Exception ex)
@@ -344,6 +361,39 @@ namespace BL
                 nannies.Add(item.thisNanny);
 
             return nannies;
+        }
+
+        public List<BE.Child> childWithoutNanny()
+        {
+            List<BE.Child> children = childrenList();
+
+            List<BE.Contract> contracts = contractsList();
+
+            foreach (var child in children)
+            {
+                if (contracts.Find(x => x.childId == child.id) != null)
+                    children.Remove(child);
+            }
+
+            return children;
+        }
+
+        public List<BE.Nanny> listOfNanniesByTamatHloidays()
+        {
+            List<BE.Nanny> nannies= nanniesList();
+            nannies.RemoveAll(x => x.tamatHolidays == false);
+            return nannies;
+        }
+
+
+        public IEnumerable<BE.Contract> contractsByCondition(Func<BE.Contract,bool> predicate = null)
+        {
+            return dal.contrantsByCondition(predicate);
+        }
+
+        public int contractsByConditionCount(Func<BE.Contract, bool> predicate = null)
+        {
+            return contractsByCondition(predicate).Count();
         }
     }
 }
