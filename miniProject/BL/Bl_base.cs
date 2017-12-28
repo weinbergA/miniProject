@@ -395,5 +395,42 @@ namespace BL
         {
             return contractsByCondition(predicate).Count();
         }
+
+        public IEnumerable<IGrouping<int, BE.Nanny>> nanniesByAges(bool minAge, bool sorting = false)
+        {
+            List<BE.Nanny> nannies = nanniesList();
+            IEnumerable<IGrouping<int, BE.Nanny>> query;
+            if (sorting)
+            {
+                if (minAge)
+                    nannies.Sort((x, y) => x.minAgeChildren.CompareTo(y.minAgeChildren));
+                else
+                    nannies.Sort((x, y) => x.maxAgeChildren.CompareTo(y.maxAgeChildren));
+            }
+            if (minAge)
+            {
+                query = from nanny in nannies
+                        group nanny by nanny.minAgeChildren % 3;
+            }
+            else
+            {
+               query = from nanny in nannies
+                       group nanny by nanny.MaxChildren % 3;
+            }
+            return query;
+        }
+
+        public IEnumerable<IGrouping<double,BE.Contract>> contractsByDistance(bool sorting = false)
+        {
+            List<BE.Contract> contracts = contractsList();
+            
+            if(sorting)
+                contracts.Sort((x, y) => Main.Distance.Getdistance(dal.getMotherById(x.motherId).address, dal.GetNannyById(x.nannyId).address).CompareTo(Main.Distance.Getdistance(dal.getMotherById(y.motherId).address, dal.GetNannyById(y.nannyId).address)));
+            
+            IEnumerable<IGrouping<double, BE.Contract>> query = from contract in contracts
+                                                                group contract by Main.Distance.Getdistance(dal.getMotherById(contract.motherId).address, dal.GetNannyById(contract.nannyId).address) % 5;
+            return query;
+        }
+        
     }
 }
