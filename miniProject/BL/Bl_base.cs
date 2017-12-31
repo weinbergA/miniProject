@@ -130,11 +130,10 @@ namespace BL
         }
 
 
-        public void addContract(BE.Contract contract)
+        public bool addContract(BE.Child child, BE.Nanny nanny, bool isSigned)
         {
-            BE.Mother mother = dal.getMotherById(contract.motherId);
-            BE.Nanny nanny = dal.GetNannyById(contract.nannyId);
-            BE.Child child = dal.getChildByID(contract.childId);
+            BE.Mother mother = dal.getMotherById(child.motherId);
+            BE.Contract contract = new BE.Contract();
 
             int childAge = monthsOld(child.dateOfBirth);
 
@@ -144,19 +143,33 @@ namespace BL
             if (nanny.MaxChildren == (dal.contractsList().FindAll(x => x.nannyId == nanny.id).Count))
                 throw new Exception("This nanny is full");
 
-            if (nanny.hourlyRateAccepting && contract.monthlyOrHourly == BE.hourlyOrMonthly.hourly)
+            if (nanny.hourlyRateAccepting)
             {
                 double sumHours = 0;
                 for (int i = 0; i < 6; i++)
                     sumHours += mother.neededHours[1, i].Hours - mother.neededHours[0, i].Hours;
-                contract.HourlyRate = nanny.HourlyRate;
-                contract.MonthlyRate = (sumHours * 52) / 12;
+                if (((sumHours * 52) / 12) < nanny.monthlyRate)
+                {
+                    contract.monthlyOrHourly = BE.hourlyOrMonthly.hourly;
+                    contract.HourlyRate = nanny.HourlyRate;
+                    
+                }
+                else
+                {
+                    contract.monthlyOrHourly = BE.hourlyOrMonthly.monthly;
+                    contract.MonthlyRate = nanny.monthlyRate;
+                }
             }
             else
                 contract.MonthlyRate = nanny.MonthlyRate;
 
             int sumChild = (dal.contractsList()).FindAll(x => x.motherId == mother.id && x.nannyId == nanny.id).Count;
             contract.MonthlyRate -= sumChild * 0.02;
+
+            if (isSigned)
+                contract.isContractSighed = true;
+            else
+                contract.isContractSighed = false;
             try
             {
                 dal.addContract(contract);
