@@ -137,7 +137,7 @@ namespace BL
             contract.motherId = mother.id;
             contract.nannyId = nanny.id;
 
-            if ((contractsList().FindAll(x => x.childId == child.id)) != null)
+            if ((contractsList().FindAll(x => x.childId == child.id)).Count != 0)
                 throw new Exception("This child  already has a nanny");
             int childAge = monthsOld(child.dateOfBirth);
 
@@ -149,26 +149,17 @@ namespace BL
 
             if (nanny.hourlyRateAccepting)
             {
+                contract.HourlyRate = nanny.HourlyRate;
                 double sumHours = 0;
                 for (int i = 0; i < 6; i++)
                     sumHours += mother.neededHours[i,1].Hours - mother.neededHours[i, 0].Hours;
-                if (((sumHours * 52) / 12) < nanny.monthlyRate)
-                {
-                    contract.monthlyOrHourly = BE.hourlyOrMonthly.hourly;
-                    contract.HourlyRate = nanny.HourlyRate;
-                    
-                }
-                else
-                {
-                    contract.monthlyOrHourly = BE.hourlyOrMonthly.monthly;
-                    contract.MonthlyRate = nanny.monthlyRate;
-                }
+                contract.MonthlyRate = Math.Min(nanny.MonthlyRate, nanny.hourlyRate * ((sumHours * 52) / 12));
             }
             else
                 contract.MonthlyRate = nanny.MonthlyRate;
 
             int sumChild = (dal.contractsList()).FindAll(x => x.motherId == mother.id && x.nannyId == nanny.id).Count;
-            contract.MonthlyRate -= sumChild * 0.02;
+            contract.MonthlyRate -= sumChild * 0.02 * contract.monthlyRate;
 
             if (isSigned)
                 contract.isContractSighed = true;
@@ -314,8 +305,8 @@ namespace BL
                     for (int i = 0; i < 6; i++)
                     {
                         ////checking matching by enter and exit hour
-                        if (mother.neededHours[0, i].Hours < nanny.workingHours[0, i].Hours
-                            || mother.neededHours[1, i].Hours > nanny.workingHours[1, i].Hours)
+                        if (mother.neededHours[i, 0].Hours < nanny.workingHours[i, 0].Hours
+                            || mother.neededHours[i, 1].Hours > nanny.workingHours[i, 1].Hours)
                             matching = false;
                     }
                 }
@@ -323,6 +314,9 @@ namespace BL
                     matchingNannies.Add(nanny);
 
             }
+            if (matchingNannies.Count == 0)
+                return bestDefaultsNannies(mother);
+
             return matchingNannies;
         }
         double overlapping(TimeSpan[,] nanny, TimeSpan[,] mother)
@@ -330,8 +324,8 @@ namespace BL
             int sumOverlapping = 0;
             for (int i = 0; i < 6; i++)
             {
-                sumOverlapping += Math.Min(nanny[1, i].Hours, mother[1, i].Hours) -
-                    Math.Max(nanny[0, i].Hours, mother[0, i].Hours);
+                sumOverlapping += Math.Min(nanny[i, 1].Hours, mother[i, 1].Hours) -
+                    Math.Max(nanny[i, 0].Hours, mother[i, 0].Hours);
             }
             return sumOverlapping;
         }
@@ -348,7 +342,7 @@ namespace BL
 
             var list = overlappingHours.ToList();
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 5 && list.Count > 0; i++)
             {
                 double max = list.Max(item => item.matchingHours);
                 nannies.Add(list.First(t => max == t.matchingHours).Nanny);

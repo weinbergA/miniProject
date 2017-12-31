@@ -39,7 +39,7 @@ namespace PL
             motherId = 5432,
             firstName = "Natan",
             lastName = "Goldshtein",
-            dateOfBirth = new DateTime(2014, 04, 24),
+            dateOfBirth = new DateTime(2016, 04, 24),
             specialNeeds = false,
             specialNeedsDescrition = "",
         };
@@ -159,7 +159,7 @@ namespace PL
             isElevator = false,
             floor = 3,
             experienceYears = 5,
-            maxChildren = 4,
+            maxChildren = 3,
             minAgeChildren = 3,
             maxAgeChildren = 36,
             hourlyRateAccepting = true,
@@ -168,12 +168,12 @@ namespace PL
             isWorkingToday = new bool[] { true, true, true, true, true, true },
             workingHours = new TimeSpan[,]
               {
-                  { new TimeSpan(8,0,0), new TimeSpan(14,30,0)},
-                  { new TimeSpan(8,0,0), new TimeSpan(15,30,0)},
-                  { new TimeSpan(9,0,0), new TimeSpan(16,0,0)},
-                  { new TimeSpan(8,0,0), new TimeSpan(16,0,0)},
-                  { new TimeSpan(7,45,0), new TimeSpan(15,30,0)},
-                  { new TimeSpan(8,0,0), new TimeSpan(11,30,0)}
+                  { new TimeSpan(7,0,0), new TimeSpan(16,30,0)},
+                  { new TimeSpan(7,0,0), new TimeSpan(16,30,0)},
+                  { new TimeSpan(7,0,0), new TimeSpan(16,0,0)},
+                  { new TimeSpan(7,0,0), new TimeSpan(16,0,0)},
+                  { new TimeSpan(7,0,0), new TimeSpan(16,30,0)},
+                  { new TimeSpan(7,0,0), new TimeSpan(13,30,0)}
              },
             tamatHolidays = true,
             reviews = ""
@@ -190,15 +190,29 @@ namespace PL
 
             bl.addNanny(agi_mishol);
             bl.addNanny(farcha_mazali);
+            
 
             bl.addMother(sara_cohen);
             bl.addMother(odel_goldshtein);
             bl.addMother(masuda_zaguri);
+
             bl.addContract(moshe_cohen, farcha_mazali,true);
-            
-            bl.addContract(moshe_cohen, farcha_mazali, true);
+            bl.addContract(natan_goldshtein, farcha_mazali, true);
+            bl.addContract(nachman_goldshtein, farcha_mazali, false);
+            List<BE.Nanny> bestNanniesSaraCohen = bl.listOfMatchingNannies(sara_cohen);
+            if (bestNanniesSaraCohen.Count == 0)
+                bestNanniesSaraCohen = bl.bestDefaultsNannies(sara_cohen);
+            List<BE.Nanny> bestNanniesOdelGoldshtein = bl.listOfMatchingNannies(odel_goldshtein);
+
             foreach (var item in bl.contractsList())
                 Console.WriteLine(item);
+
+            foreach(var nanny in bestNanniesSaraCohen)
+                Console.WriteLine(nanny);
+            foreach (var nanny in bestNanniesOdelGoldshtein)
+                Console.WriteLine(nanny);
+
+
         }
 
 

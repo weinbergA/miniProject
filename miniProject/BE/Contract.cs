@@ -36,7 +36,10 @@ namespace BE
             //str += "Strat date: " + contrcatBeggining.Date;
             //str += "\nEnd date: " + contractFinshing + "/n";
             if (monthlyOrHourly == 0)
+            {
                 str += "Hourly rate: " + hourlyRate + " per hour\n";
+                str += "Monthly rate: " + monthlyRate + " per month\n";
+            }
             else
                 str += "Monthly rate: " + monthlyRate + "per month\n";
             return str;

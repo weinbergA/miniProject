@@ -32,17 +32,20 @@ namespace BE
         public override string ToString()
         {
             string str = "";
-            str += "\nName: " + firstName + lastName;
-            str += "\nrate per mounth: " + monthlyRate;
-            str += "/nworking days:";
+            str += "\nName: " + firstName + " " + lastName;
+            str += "\nrate per month: " + monthlyRate;
+            str += "\nworking days:\n";
             for (int i = 0; i < 6; i++)
             {
                 if(isWorkingToday[i])
                 {
-                    str += (workingHours[0, i]).ToString() + "\n";
-                    str += (workingHours[1, i]).ToString() + "\n";
+                    str += Enum.Parse(typeof(DayOfWeek), i.ToString()) + ": ";
+                    str += (workingHours[i, 0]).ToString() + "-";
+                    str += (workingHours[i, 1]).ToString() + "\n";
+                    
                 }
             }
+            
             return str;
         }
         public Nanny(int nannyId,string firstN,string lastN,DateTime birth,int phone,string nannyAddress,bool elevator,int nannyFloor,double experience,int maxOfChildren,int minAge,int maxAge,bool isHourlyRate,double rateHourly,double rateMothly,bool[]workDays, TimeSpan[,] hours,bool holidays,string nannyReviews)
