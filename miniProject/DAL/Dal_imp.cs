@@ -16,7 +16,7 @@ namespace DAL
             if (temp == null)
                 DS.DataSource.nanniesList.Add(nanny);
             else
-                throw new System.InvalidOperationException("This nanny already exist");
+                throw new Exception("This nanny already exist");
         }
         public void removeNanny(BE.Nanny nanny)
         {
@@ -24,13 +24,13 @@ namespace DAL
             if (temp == null)
                 DS.DataSource.nanniesList.Remove(nanny);//removing if only if she have no contruct
             else
-                throw new System.InvalidOperationException("You can't delete nanny with active contract");
+                throw new Exception("You can't delete nanny with active contract");
         }
         public void updateNanny(BE.Nanny nanny)
         {
             BE.Nanny temp = DS.DataSource.nanniesList.Find(x => x.id == nanny.id);
             if (temp == null)
-                throw new System.InvalidOperationException("The is no nanny to update");
+                throw new Exception("The is no nanny to update");
             DS.DataSource.nanniesList.Remove(temp);
             DS.DataSource.nanniesList.Add(nanny);
         }
@@ -41,7 +41,7 @@ namespace DAL
             if (temp == null)
                 DS.DataSource.mothersList.Add(mother);
             else
-                throw new System.InvalidOperationException("This mother already exist");
+                throw new Exception("This mother already exist");
         }
 
         public void removeMother(BE.Mother mother)
@@ -56,7 +56,7 @@ namespace DAL
         {
             BE.Mother temp = DS.DataSource.mothersList.Find(x => x.id == mother.id);
             if (temp == null)
-                throw new System.InvalidOperationException("The is no mother to update");
+                throw new Exception("The is no mother to update");
             DS.DataSource.mothersList.Remove(temp);
             DS.DataSource.mothersList.Add(mother);
         }
@@ -67,7 +67,7 @@ namespace DAL
             if (temp == null)
                 DS.DataSource.childrenList.Add(child);
             else
-                throw new System.InvalidOperationException("This child already exist");
+                throw new Exception("This child already exist");
         }
         public void removeChild(BE.Child child)
         {
@@ -78,7 +78,7 @@ namespace DAL
         {
             BE.Child temp = DS.DataSource.childrenList.Find(x => x.id == child.id);
             if (temp == null)
-                throw new System.InvalidOperationException("The is no child to update");
+                throw new Exception("The is no child to update");
             DS.DataSource.childrenList.Remove(temp);
             DS.DataSource.childrenList.Add(child);
         }
@@ -87,10 +87,10 @@ namespace DAL
         {
             BE.Nanny temp1 = DS.DataSource.nanniesList.Find(x => x.id == contract.nannyId);
             if (temp1 == null)
-                throw new System.InvalidOperationException("wrong data, no nanny with this details");
+                throw new Exception("wrong data, no nanny with this details");
             BE.Mother temp2 = DS.DataSource.mothersList.Find(x => x.id == contract.motherId);
             if (temp2 == null)
-                throw new System.InvalidOperationException("wrong data, no mother with this details");
+                throw new Exception("wrong data, no mother with this details");
             contract.contractNumber = contractNumberStrat++;
             DS.DataSource.contractsList.Add(contract);
         }
@@ -102,7 +102,7 @@ namespace DAL
         {
             BE.Contract temp = DS.DataSource.contractsList.Find(x => x.contractNumber == contract.contractNumber);
             if (temp == null)
-                throw new System.InvalidOperationException("The is no contract to update");
+                throw new Exception("The is no contract to update");
             DS.DataSource.contractsList.Remove(temp);
             DS.DataSource.contractsList.Add(contract);
         }

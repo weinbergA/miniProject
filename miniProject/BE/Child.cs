@@ -8,11 +8,11 @@ namespace BE
     {
         public int id;
         public int motherId;
-        string firstName;
-        string lastName;
+        public string firstName;
+        public string lastName;
         public DateTime dateOfBirth;
-        bool specialNeeds;
-        string specialNeedsDescrition;
+        public bool specialNeeds;
+        public string specialNeedsDescrition;
         public override string ToString()
         {
             string str = "";
@@ -34,5 +34,6 @@ namespace BE
             if (specialNeeds)
                 sNeedsD = specialNeedsDescrition;
         }
+        public Child() { }
     }
 }

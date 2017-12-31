@@ -11,7 +11,7 @@ namespace Main
     {
         static void Main(string[] args)
         {
-            
+            Console.WriteLine("ab");
         }
     }
     public class Distance

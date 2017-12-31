@@ -4,11 +4,11 @@ using System.Linq;
 
 namespace BL
 {
-    class Bl_base : IBL
+    public class Bl_base : IBL
     {
-        
-        DAL.Dal_imp dal = new DAL.Dal_imp();
 
+        DAL.Dal_imp dal = new DAL.Dal_imp();
+        
         public void addNanny(BE.Nanny nanny)
         {
             if (yearsOld(nanny.dateOfBirth) < 18)
@@ -28,7 +28,7 @@ namespace BL
             {
                 dal.removeNanny(nanny);
             }
-           
+
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -53,7 +53,7 @@ namespace BL
         {
             try
             {
-                dal.updateMother(mother);
+                dal.addMother(mother);
             }
 
             catch (Exception ex)
@@ -85,7 +85,7 @@ namespace BL
             {
                 throw new Exception(ex.Message);
             }
-            
+
         }
 
         public void addChild(BE.Child child)
@@ -101,7 +101,7 @@ namespace BL
             {
                 throw new Exception(ex.Message);
             }
-            
+
         }
         public void removeChild(BE.Child child)
         {
@@ -126,7 +126,7 @@ namespace BL
             {
                 throw new Exception(ex.Message);
             }
-            
+
         }
 
 
@@ -148,7 +148,7 @@ namespace BL
             {
                 double sumHours = 0;
                 for (int i = 0; i < 6; i++)
-                    sumHours += mother.neededHours[1, i].Hour - mother.neededHours[0, i].Hour;
+                    sumHours += mother.neededHours[1, i].Hours - mother.neededHours[0, i].Hours;
                 contract.HourlyRate = nanny.HourlyRate;
                 contract.MonthlyRate = (sumHours * 52) / 12;
             }
@@ -166,7 +166,7 @@ namespace BL
             {
                 throw new Exception(ex.Message);
             }
-           
+
         }
         public void removeContract(BE.Contract contract)
         {
@@ -179,7 +179,7 @@ namespace BL
             {
                 throw new Exception(ex.Message);
             }
-            
+
         }
         public void updateContract(BE.Contract contract)
         {
@@ -297,8 +297,8 @@ namespace BL
                     for (int i = 0; i < 6; i++)
                     {
                         ////checking matching by enter and exit hour
-                        if (mother.neededHours[0, i].Hour < nanny.workingHours[0, i].Hour
-                            || mother.neededHours[1, i].Hour > nanny.workingHours[1, i].Hour)
+                        if (mother.neededHours[0, i].Hours < nanny.workingHours[0, i].Hours
+                            || mother.neededHours[1, i].Hours > nanny.workingHours[1, i].Hours)
                             matching = false;
                     }
                 }
@@ -308,13 +308,13 @@ namespace BL
             }
             return matchingNannies;
         }
-        double overlapping(DateTime[,] nanny, DateTime[,] mother)
+        double overlapping(TimeSpan[,] nanny, TimeSpan[,] mother)
         {
             int sumOverlapping = 0;
             for (int i = 0; i < 6; i++)
             {
-                sumOverlapping += Math.Min(nanny[1, i].Hour, mother[1, i].Hour) -
-                    Math.Max(nanny[0, i].Hour, mother[0, i].Hour);
+                sumOverlapping += Math.Min(nanny[1, i].Hours, mother[1, i].Hours) -
+                    Math.Max(nanny[0, i].Hours, mother[0, i].Hours);
             }
             return sumOverlapping;
         }
@@ -322,9 +322,12 @@ namespace BL
         {
             List<BE.Nanny> nannies = new List<BE.Nanny>();
             var overlappingHours = from nanny in nanniesList()
-                                   select new { Nanny = nanny,
-                                       matchingHours = 
-                                       overlapping(nanny.workingHours, mother.neededHours) };
+                                   select new
+                                   {
+                                       Nanny = nanny,
+                                       matchingHours =
+                                       overlapping(nanny.workingHours, mother.neededHours)
+                                   };
 
             var list = overlappingHours.ToList();
 
@@ -337,31 +340,31 @@ namespace BL
             return nannies;
         }
 
-        public List<BE.Nanny> bestNannies(BE.Mother mother)
-        {
-            List<BE.Nanny> nannies = new List<BE.Nanny>();
+        //public List<BE.Nanny> bestNannies(BE.Mother mother)
+        //{
+        //    List<BE.Nanny> nannies = new List<BE.Nanny>();
 
-            if (listOfMatchingNannies(mother).Count > 5)
-                nannies = listOfMatchingNannies(mother);
-            else
-                nannies = bestDefaultsNannies(mother);
+        //    if (listOfMatchingNannies(mother).Count > 5)
+        //        nannies = listOfMatchingNannies(mother);
+        //    else
+        //        nannies = bestDefaultsNannies(mother);
 
-            var nanniesDistans = (from nanny in nannies
-                                  select new
-                                  {
-                                      thisNanny = nanny,
-                                      distance = Main.Distance.Getdistance(mother.address, nanny.address)
-                                  }).ToList();
+        //    var nanniesDistans = (from nanny in nannies
+        //                          select new
+        //                          {
+        //                              thisNanny = nanny,
+        //                              distance = Main.Distance.Getdistance(mother.address, nanny.address)
+        //                          }).ToList();
 
-            nannies = new List<BE.Nanny>();
+        //    nannies = new List<BE.Nanny>();
 
-            nanniesDistans.Sort((x, y) => x.distance.CompareTo(y.distance));
+        //    nanniesDistans.Sort((x, y) => x.distance.CompareTo(y.distance));
 
-            foreach (var item in nanniesDistans)
-                nannies.Add(item.thisNanny);
+        //    foreach (var item in nanniesDistans)
+        //        nannies.Add(item.thisNanny);
 
-            return nannies;
-        }
+        //    return nannies;
+        //}
 
         public List<BE.Child> childWithoutNanny()
         {
@@ -380,13 +383,13 @@ namespace BL
 
         public List<BE.Nanny> listOfNanniesByTamatHloidays()
         {
-            List<BE.Nanny> nannies= nanniesList();
+            List<BE.Nanny> nannies = nanniesList();
             nannies.RemoveAll(x => x.tamatHolidays == false);
             return nannies;
         }
 
 
-        public IEnumerable<BE.Contract> contractsByCondition(Func<BE.Contract,bool> predicate = null)
+        public IEnumerable<BE.Contract> contractsByCondition(Func<BE.Contract, bool> predicate = null)
         {
             return dal.contrantsByCondition(predicate);
         }
@@ -414,23 +417,26 @@ namespace BL
             }
             else
             {
-               query = from nanny in nannies
-                       group nanny by nanny.MaxChildren % 3;
+                query = from nanny in nannies
+                        group nanny by nanny.MaxChildren % 3;
             }
             return query;
         }
 
-        public IEnumerable<IGrouping<double,BE.Contract>> contractsByDistance(bool sorting = false)
-        {
-            List<BE.Contract> contracts = contractsList();
-            
-            if(sorting)
-                contracts.Sort((x, y) => Main.Distance.Getdistance(dal.getMotherById(x.motherId).address, dal.GetNannyById(x.nannyId).address).CompareTo(Main.Distance.Getdistance(dal.getMotherById(y.motherId).address, dal.GetNannyById(y.nannyId).address)));
-            
-            IEnumerable<IGrouping<double, BE.Contract>> query = from contract in contracts
-                                                                group contract by Main.Distance.Getdistance(dal.getMotherById(contract.motherId).address, dal.GetNannyById(contract.nannyId).address) % 5;
-            return query;
-        }
-        
+        //public IEnumerable<IGrouping<double, BE.Contract>> contractsByDistance(bool sorting = false)
+        //{
+        //    List<BE.Contract> contracts = contractsList();
+
+        //    if (sorting)
+        //        contracts.Sort((x, y) => Main.Distance.Getdistance(dal.getMotherById(x.motherId).address, dal.GetNannyById(x.nannyId).address).CompareTo(Main.Distance.Getdistance(dal.getMotherById(y.motherId).address, dal.GetNannyById(y.nannyId).address)));
+
+        //    IEnumerable<IGrouping<double, BE.Contract>> query = from contract in contracts
+        //                                                        group contract by Main.Distance.Getdistance(dal.getMotherById(contract.motherId).address, dal.GetNannyById(contract.nannyId).address) % 5;
+        //    return query;
+
+        //}
+
+
+
     }
 }

@@ -5,24 +5,24 @@ namespace BE
     public class Nanny
     {
         public int id;
-        string lastName;
-        string firstName;
+        public string lastName;
+        public string firstName;
         public DateTime dateOfBirth;
-        int phoneNumber;
+        public int phoneNumber;
         public string address;
-        bool isElevator;
-        int floor;
-        double experienceYears;
-        int maxChildren;
+        public bool isElevator;
+        public int floor;
+        public double experienceYears;
+        public int maxChildren;
         public int minAgeChildren;
         public int maxAgeChildren;
         public bool hourlyRateAccepting;
-        double hourlyRate;
-        double monthlyRate;
+        public double hourlyRate;
+        public double monthlyRate;
         public bool[] isWorkingToday = new bool[6];
-        public DateTime[,] workingHours = new DateTime[2,6];
+        public TimeSpan[,] workingHours = new TimeSpan[2,6];
         public bool tamatHolidays;
-        string reviews;
+        public string reviews;
         
 
         public double HourlyRate { get => hourlyRate; set => hourlyRate = value; }
@@ -39,14 +39,13 @@ namespace BE
             {
                 if(isWorkingToday[i])
                 {
-                    str += (workingHours[0, i]).DayOfWeek + ": ";
-                    str += (workingHours[0, i]).Hour + " - ";
-                    str += (workingHours[1, i]).Hour + "\n";
+                    str += (workingHours[0, i]).ToString() + "\n";
+                    str += (workingHours[1, i]).ToString() + "\n";
                 }
             }
             return str;
         }
-        public Nanny(int nannyId,string firstN,string lastN,DateTime birth,int phone,string nannyAddress,bool elevator,int nannyFloor,double experience,int maxOfChildren,int minAge,int maxAge,bool isHourlyRate,double rateHourly,double rateMothly,bool[]workDays,DateTime[,] hours,bool holidays,string nannyReviews)
+        public Nanny(int nannyId,string firstN,string lastN,DateTime birth,int phone,string nannyAddress,bool elevator,int nannyFloor,double experience,int maxOfChildren,int minAge,int maxAge,bool isHourlyRate,double rateHourly,double rateMothly,bool[]workDays, TimeSpan[,] hours,bool holidays,string nannyReviews)
         {
             id = nannyId;
             firstName = firstN;
@@ -76,5 +75,6 @@ namespace BE
             tamatHolidays = holidays;
             reviews = nannyReviews;
         }
+        public Nanny() { }
     }
 }

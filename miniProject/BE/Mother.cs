@@ -7,14 +7,14 @@ namespace BE
     public class Mother
     {
         public int id;
-        string lastName;
-        string firstName;
-        int phoneNumber;
+        public string lastName;
+        public string firstName;
+        public int phoneNumber;
         public string address;
-        string nannyRequestedAddress;
+        public string nannyRequestedAddress;
         public bool[] isNeedNannyToday = new bool[6];
-        public DateTime[,] neededHours = new DateTime[2, 6];
-        string notes;
+        public TimeSpan[,] neededHours = new TimeSpan[2, 6];
+        public string notes;
         public override string ToString()
         {
             string str = "";
@@ -25,14 +25,13 @@ namespace BE
             {
                 if (isNeedNannyToday[i])
                 {
-                    str += (neededHours[0, i]).DayOfWeek + ": ";
-                    str += (neededHours[0, i]).Hour + " - ";
-                    str += (neededHours[1, i]).Hour + "\n";
+                    str += (neededHours[0, i]).ToString() + "\n";
+                    str += (neededHours[1, i]).ToString() + "\n";
                 }
             }
             return str;
         }
-        public Mother(int motherId,string firstN,string lastN,int phone,string motherAddress,string requestedAddress,bool[] needNannyDays,DateTime[,] houresNeeds,string note)
+        public Mother(int motherId,string firstN,string lastN,int phone,string motherAddress,string requestedAddress,bool[] needNannyDays, TimeSpan[,] houresNeeds,string note)
         {
             id = motherId;
             firstName = firstN;
@@ -55,5 +54,6 @@ namespace BE
             }
            
         }
+        public Mother() { }
     }
 }

@@ -58,6 +58,8 @@ namespace BE
             contractFinshing = end;
            
         }
+
+        public Contract() { }
         
     }
 }
