@@ -12,13 +12,13 @@ namespace BE
         public int nannyId;
         public int motherId;
         public int childId;
-        bool firstMeeting;
+        public bool firstMeeting;
         public bool isContractSighed;
-        double hourlyRate;
-        double monthlyRate;
+        public double hourlyRate;
+        public double monthlyRate;
         public hourlyOrMonthly monthlyOrHourly;
-        DateTime contrcatBeggining;
-        DateTime contractFinshing;
+        public DateTime contrcatBeggining;
+        public DateTime contractFinshing;
 
         public double HourlyRate { get => hourlyRate; set => hourlyRate = value; }
         public double MonthlyRate { get => monthlyRate; set => monthlyRate = value; }

@@ -178,6 +178,8 @@ namespace PL
             tamatHolidays = true,
             reviews = ""
         };
+        
+
         public void initialize()
         {
             bl.addChild(moshe_cohen);
