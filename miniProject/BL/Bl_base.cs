@@ -91,7 +91,7 @@ namespace BL
         public void addChild(BE.Child child)
         {
             if (monthsOld(child.dateOfBirth) < 3)
-                throw new Exception("The child can't under 3 months");
+                throw new Exception("The child can't be under 3 months");
             try
             {
                 dal.addChild(child);
@@ -130,11 +130,15 @@ namespace BL
         }
 
 
-        public bool addContract(BE.Child child, BE.Nanny nanny, bool isSigned)
+        public void addContract(BE.Child child, BE.Nanny nanny, bool isSigned)
         {
             BE.Mother mother = dal.getMotherById(child.motherId);
             BE.Contract contract = new BE.Contract();
+            contract.motherId = mother.id;
+            contract.nannyId = nanny.id;
 
+            if ((contractsList().FindAll(x => x.childId == child.id)) != null)
+                throw new Exception("This child  already has a nanny");
             int childAge = monthsOld(child.dateOfBirth);
 
             if (nanny.minAgeChildren > childAge || nanny.maxAgeChildren < childAge)
@@ -147,7 +151,7 @@ namespace BL
             {
                 double sumHours = 0;
                 for (int i = 0; i < 6; i++)
-                    sumHours += mother.neededHours[1, i].Hours - mother.neededHours[0, i].Hours;
+                    sumHours += mother.neededHours[i,1].Hours - mother.neededHours[i, 0].Hours;
                 if (((sumHours * 52) / 12) < nanny.monthlyRate)
                 {
                     contract.monthlyOrHourly = BE.hourlyOrMonthly.hourly;

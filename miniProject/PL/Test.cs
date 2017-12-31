@@ -16,7 +16,7 @@ namespace PL
             motherId = 0987,
             firstName = "Moshe",
             lastName = "Cohen",
-            dateOfBirth = new DateTime(2014, 12, 01),
+            dateOfBirth = new DateTime(2016, 12, 01),
             specialNeeds = false,
             specialNeedsDescrition = "",
 
@@ -159,7 +159,7 @@ namespace PL
             isElevator = false,
             floor = 3,
             experienceYears = 5,
-            maxChildren = 1,
+            maxChildren = 4,
             minAgeChildren = 3,
             maxAgeChildren = 36,
             hourlyRateAccepting = true,
@@ -178,6 +178,7 @@ namespace PL
             tamatHolidays = true,
             reviews = ""
         };
+       
         
 
         public void initialize()
@@ -193,8 +194,11 @@ namespace PL
             bl.addMother(sara_cohen);
             bl.addMother(odel_goldshtein);
             bl.addMother(masuda_zaguri);
-
-
+            bl.addContract(moshe_cohen, farcha_mazali,true);
+            
+            bl.addContract(moshe_cohen, farcha_mazali, true);
+            foreach (var item in bl.contractsList())
+                Console.WriteLine(item);
         }
 
 

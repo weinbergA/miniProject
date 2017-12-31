@@ -18,7 +18,7 @@ namespace BL
         void removeChild(BE.Child child);
         void updateChild(BE.Child child);
 
-        bool addContract(BE.Child child, BE.Nanny nanny, bool isSigned);
+        void addContract(BE.Child child, BE.Nanny nanny, bool isSigned);
         void removeContract(BE.Contract contract);
         void updateContract(BE.Contract contract);
 

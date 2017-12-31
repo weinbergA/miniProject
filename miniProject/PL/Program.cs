@@ -11,7 +11,14 @@ namespace PL
         static void Main(string[] args)
         {
             Test t = new Test();
-            t.initialize();
+            try
+            {
+                t.initialize();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
