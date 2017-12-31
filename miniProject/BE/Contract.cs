@@ -27,15 +27,15 @@ namespace BE
         {
             string str = "";
             str += "Contract number: " + contractNumber + " " + "/n";
+            str += "mother: " + motherId + "nanny: " + nannyId + "/n";
             //add nanny name && child name
             if (isContractSighed)
                 str += "Contract sighed /n";
             else
                 str+= "Contract not sighed /n";
-            str += "Strat date: " + contrcatBeggining.Date;
-            str += "\nEnd date: " + contractFinshing + "/n";
+            //str += "Strat date: " + contrcatBeggining.Date;
+            //str += "\nEnd date: " + contractFinshing + "/n";
             if (monthlyOrHourly == 0)
-
                 str += "Hourly rate: " + hourlyRate + " per hour\n";
             else
                 str += "Monthly rate: " + monthlyRate + "per month/n";
