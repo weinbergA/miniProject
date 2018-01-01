@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BL
 {
-    interface IBL
+    public interface IBL
     {
         void addNanny(BE.Nanny nanny);
         void removeNanny(BE.Nanny nanny);
@@ -31,5 +31,14 @@ namespace BL
         BE.Mother motherOfTheChild(int childId);
 
         List<BE.Nanny> listOfMatchingNannies(BE.Mother mother);
+    }
+    public class FactoryBL
+    {
+        static IBL bl = null;
+        public static IBL GetBL()
+        {
+            bl = new Bl_base();
+            return bl;
+        }
     }
 }

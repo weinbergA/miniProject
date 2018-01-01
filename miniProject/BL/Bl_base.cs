@@ -7,7 +7,7 @@ namespace BL
     public class Bl_base : IBL
     {
 
-        DAL.Dal_imp dal = new DAL.Dal_imp();
+        DAL.Idal dal;
         
         public void addNanny(BE.Nanny nanny)
         {

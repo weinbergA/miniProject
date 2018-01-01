@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3FAE2DA1-1C37-413A-A94A-2592B44E2911}</ProjectGuid>
+    <ProjectGuid>{CADF0111-92E0-45AD-9AF9-3B308E9C5284}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>miniProject</RootNamespace>
-    <AssemblyName>miniProject</AssemblyName>
+    <RootNamespace>PLWPF</RootNamespace>
+    <AssemblyName>PLWPF</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -54,6 +54,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="SignedMother.xaml.cs">
+      <DependentUpon>SignedMother.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SignedNanny.xaml.cs">
+      <DependentUpon>SignedNanny.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -66,8 +72,30 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NewMother.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewNanny.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SignedMother.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SignedNanny.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NewMother.xaml.cs">
+      <DependentUpon>NewMother.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewNanny.xaml.cs">
+      <DependentUpon>NewNanny.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -92,6 +120,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BE\BE.csproj">
+      <Project>{4de225c2-ddc9-40b5-a25c-7b10f9a76fda}</Project>
+      <Name>BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BL\BL.csproj">
+      <Project>{8a020184-a48f-4dfa-9292-d9da8bfa6f0b}</Project>
+      <Name>BL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

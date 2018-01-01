@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace miniProject.Properties
+namespace PLWPF.Properties
 {
 
 
