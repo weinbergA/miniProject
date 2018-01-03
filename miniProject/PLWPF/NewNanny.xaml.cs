@@ -19,20 +19,28 @@ namespace PLWPF
     /// </summary>
     public partial class NewNanny : Window
     {
+        BE.Nanny nanny;
+        BL.IBL bl;
         public NewNanny()
         {
             InitializeComponent();
+            nanny = new BE.Nanny();
+            bl = BL.FactoryBL.GetBL();
+            this.DataContext = nanny;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        
+        private void nanny_join_Click(object sender, RoutedEventArgs e)
         {
-
-            System.Windows.Data.CollectionViewSource motherViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("motherViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // motherViewSource.Source = [generic data source]
-            System.Windows.Data.CollectionViewSource nannyViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("nannyViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // nannyViewSource.Source = [generic data source]
+            try
+            {
+                bl.addNanny(nanny);
+                this.Close();
+            }
+            catch(Exception x)
+            {
+                MessageBox.Show(x.Message);
+            }
         }
     }
 }

@@ -6,20 +6,18 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.NewNanny"
         mc:Ignorable="d"
-        Title="NewNanny" Height="600" Width="325" Loaded="Window_Loaded">
-    <Window.Resources>
-        <CollectionViewSource x:Key="motherViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Mother}, CreateList=True}"/>
-        <CollectionViewSource x:Key="nannyViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Nanny}, CreateList=True}"/>
-    </Window.Resources>
-    <Grid DataContext="{StaticResource motherViewSource}">
-        <Grid x:Name="grid1" DataContext="{StaticResource nannyViewSource}" HorizontalAlignment="Center" VerticalAlignment="Center" >
+        Title="NewNanny" Height="650" Width="325" >
+    
+   
+        <Grid x:Name="grid1"  HorizontalAlignment="Center" VerticalAlignment="Center" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="32"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -68,8 +66,10 @@
             <TextBox x:Name="phoneNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="14" Text="{Binding phoneNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="reviews:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="15" VerticalAlignment="Center"/>
             <TextBox x:Name="reviewsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="15" Text="{Binding reviews, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="tamat Holidays:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="16" VerticalAlignment="Center"/>
-            <CheckBox x:Name="tamatHolidaysCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding tamatHolidays, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="16" VerticalAlignment="Center"/>
-        </Grid>
+        <Label Content="tamat Holidays:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="16" VerticalAlignment="Center"/>
+        <CheckBox x:Name="tamatHolidaysCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding tamatHolidays, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="16" VerticalAlignment="Center"/>
+        <Button x:Name="nanny_join" Content="join" Grid.Row="17"  HorizontalAlignment="Stretch" Grid.ColumnSpan="2" Click="nanny_join_Click"/>
     </Grid>
+        
+    
 </Window>

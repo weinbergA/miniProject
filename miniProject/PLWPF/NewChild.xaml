@@ -4,16 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
-        xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.chiled"
+        xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.newChild"
         mc:Ignorable="d"
-        Title="chiled" Height="300" Width="300" Loaded="Window_Loaded">
-    <Window.Resources>
-        <CollectionViewSource x:Key="childViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Child}, CreateList=True}"/>
-    </Window.Resources>
+        Title="chiled" Height="300" Width="300">
+   
     <Grid>
 
-        <Grid x:Name="grid1" VerticalAlignment="Center"  HorizontalAlignment="Center" DataContext="{StaticResource childViewSource}">
+        <Grid x:Name="grid1" VerticalAlignment="Center"  HorizontalAlignment="Center" >
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -40,6 +39,7 @@
             <CheckBox x:Name="specialNeedsCheckBox" VerticalAlignment="Center" Grid.Row="5" Margin="3" IsChecked="{Binding specialNeeds, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Grid.Column="1" Content=""/>
             <Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="special Needs Descrition:"/>
             <TextBox x:Name="specialNeedsDescritionTextBox" Width="120" VerticalAlignment="Center" Text="{Binding specialNeedsDescrition, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="6" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Button  x:Name="addChild" Grid.ColumnSpan="2" Content="Button" HorizontalAlignment="Stretch"  Grid.Row="9" VerticalAlignment="Top" Click="addChild_Click" />
         </Grid>
 
     </Grid>

@@ -8,7 +8,10 @@ namespace BL
     {
 
         DAL.Idal dal;
-        
+        public Bl_base()
+        {
+            dal = DAL.FactoryDal.GetDal();
+        }
         public void addNanny(BE.Nanny nanny)
         {
             if (yearsOld(nanny.dateOfBirth) < 18)

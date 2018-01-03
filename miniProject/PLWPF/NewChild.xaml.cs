@@ -17,19 +17,31 @@ namespace PLWPF
     /// <summary>
     /// Interaction logic for chiled.xaml
     /// </summary>
-    public partial class chiled : Window
+    public partial class newChild : Window
     {
-        public chiled()
+        BE.Child child;
+        BL.IBL bl;
+        public newChild()
         {
             InitializeComponent();
+            child = new BE.Child();
+            bl = BL.FactoryBL.GetBL();
+            this.DataContext = child;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
+       
 
-            System.Windows.Data.CollectionViewSource childViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("childViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // childViewSource.Source = [generic data source]
+        private void addChild_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.addChild(child);
+                this.Close();
+            }
+            catch(Exception x)
+            {
+                MessageBox.Show(x.Message);
+            }
         }
     }
 }

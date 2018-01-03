@@ -17,37 +17,31 @@ namespace PLWPF
     /// <summary>
     /// Interaction logic for NewMother.xaml
     /// </summary>
+    
     public partial class NewMother : Window
     {
+        BE.Mother mother;
+        BL.IBL bl;
         public NewMother()
         {
             InitializeComponent();
+            mother = new BE.Mother();
+            bl = BL.FactoryBL.GetBL();
+
+            this.DataContext = mother;
         }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        
+        private void JoinButton_Click(object sender, RoutedEventArgs e)
         {
-
-            System.Windows.Data.CollectionViewSource motherViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("motherViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // motherViewSource.Source = [generic data source]
-        }
-
-        private void motherDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Window_Loaded_1(object sender, RoutedEventArgs e)
-        {
-
-            System.Windows.Data.CollectionViewSource motherViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("motherViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // motherViewSource.Source = [generic data source]
-        }
-
-        private void addressTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
+            try
+            {
+                bl.addMother(mother);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
