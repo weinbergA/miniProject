@@ -137,26 +137,26 @@ namespace BL
             contract.motherId = mother.id;
             contract.nannyId = nanny.id;
 
-            if ((contractsList().FindAll(x => x.childId == child.id)).Count != 0)
+            if ((contractsList().FindAll(x => x.childId == child.Id)).Count != 0)
                 throw new Exception("This child  already has a nanny");
             int childAge = monthsOld(child.dateOfBirth);
 
             if (nanny.minAgeChildren > childAge || nanny.maxAgeChildren < childAge)
                 throw new Exception("The age of the child not compatible with accepting ages of the nanny");
 
-            if (nanny.MaxChildren == (dal.contractsList().FindAll(x => x.nannyId == nanny.id).Count))
+            if (nanny.maxChildren == (dal.contractsList().FindAll(x => x.nannyId == nanny.id).Count))
                 throw new Exception("This nanny is full");
 
             if (nanny.hourlyRateAccepting)
             {
-                contract.HourlyRate = nanny.HourlyRate;
+                contract.HourlyRate = nanny.hourlyRate;
                 double sumHours = 0;
                 for (int i = 0; i < 6; i++)
                     sumHours += mother.neededHours[i,1].Hours - mother.neededHours[i, 0].Hours;
-                contract.MonthlyRate = Math.Min(nanny.MonthlyRate, nanny.hourlyRate * ((sumHours * 52) / 12));
+                contract.MonthlyRate = Math.Min(nanny.monthlyRate, nanny.hourlyRate * ((sumHours * 52) / 12));
             }
             else
-                contract.MonthlyRate = nanny.MonthlyRate;
+                contract.MonthlyRate = nanny.monthlyRate;
 
             int sumChild = (dal.contractsList()).FindAll(x => x.motherId == mother.id && x.nannyId == nanny.id).Count;
             contract.MonthlyRate -= sumChild * 0.02 * contract.monthlyRate;
@@ -385,7 +385,7 @@ namespace BL
 
             foreach (var child in children)
             {
-                if (contracts.Find(x => x.childId == child.id) != null)
+                if (contracts.Find(x => x.childId == child.Id) != null)
                     children.Remove(child);
             }
 
@@ -429,7 +429,7 @@ namespace BL
             else
             {
                 query = from nanny in nannies
-                        group nanny by nanny.MaxChildren % 3;
+                        group nanny by nanny.maxChildren % 3;
             }
             return query;
         }

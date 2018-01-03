@@ -6,13 +6,16 @@ namespace BE
 {
     public class Child
     {
-        public int id;
-        public int motherId;
-        public string firstName;
-        public string lastName;
-        public DateTime dateOfBirth;
-        public bool specialNeeds;
-        public string specialNeedsDescrition;
+        public int Id { get; set; }
+        public int motherId { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public DateTime dateOfBirth { get; set; }
+        public bool specialNeeds { get; set; }
+        public string specialNeedsDescrition { get; set; }
+
+
+
         public override string ToString()
         {
             string str = "";
@@ -26,7 +29,7 @@ namespace BE
 
         public Child(int childId,int idMother, string firstN,string lastN,DateTime birth, bool sNeeds,string sNeedsD)
         {
-            id = childId;
+            Id = childId;
             motherId = idMother;
             firstName = firstN;
             lastName = lastN;

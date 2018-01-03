@@ -4,31 +4,29 @@ namespace BE
 {
     public class Nanny
     {
-        public int id;
-        public string lastName;
-        public string firstName;
-        public DateTime dateOfBirth;
-        public int phoneNumber;
-        public string address;
-        public bool isElevator;
-        public int floor;
-        public double experienceYears;
-        public int maxChildren;
-        public int minAgeChildren;
-        public int maxAgeChildren;
-        public bool hourlyRateAccepting;
-        public double hourlyRate;
-        public double monthlyRate;
+        public int id { get; set; }
+        public string lastName { get; set; }
+        public string firstName { get; set; }
+        public DateTime dateOfBirth { get; set; }
+        public int phoneNumber { get; set; }
+        public string address { get; set; }
+        public bool isElevator { get; set; }
+        public int floor { get; set; }
+        public double experienceYears { get; set; }
+        public int maxChildren { get; set; }
+        public int minAgeChildren { get; set; }
+        public int maxAgeChildren { get; set; }
+        public bool hourlyRateAccepting { get; set; }
+        public double hourlyRate { get; set; }
+        public double monthlyRate { get; set; }
         public bool[] isWorkingToday = new bool[6];
-        public TimeSpan[,] workingHours = new TimeSpan[2,6];
-        public bool tamatHolidays;
-        public string reviews;
         
+        public TimeSpan[,] workingHours = new TimeSpan[2, 6];
+        public bool tamatHolidays { get; set; }
+        public string reviews { get; set; }
 
-        public double HourlyRate { get => hourlyRate; set => hourlyRate = value; }
-        public double MonthlyRate { get => monthlyRate; set => monthlyRate = value; }
-        public int MaxChildren { get => maxChildren; set => maxChildren = value; }
 
+       
         public override string ToString()
         {
             string str = "";

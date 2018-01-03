@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace PLWPF
 {
     /// <summary>
-    /// Interaction logic for NewNanny.xaml
+    /// Interaction logic for chiled.xaml
     /// </summary>
-    public partial class NewNanny : Window
+    public partial class chiled : Window
     {
-        public NewNanny()
+        public chiled()
         {
             InitializeComponent();
         }
@@ -27,12 +27,9 @@ namespace PLWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            System.Windows.Data.CollectionViewSource motherViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("motherViewSource")));
+            System.Windows.Data.CollectionViewSource childViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("childViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
-            // motherViewSource.Source = [generic data source]
-            System.Windows.Data.CollectionViewSource nannyViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("nannyViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // nannyViewSource.Source = [generic data source]
+            // childViewSource.Source = [generic data source]
         }
     }
 }

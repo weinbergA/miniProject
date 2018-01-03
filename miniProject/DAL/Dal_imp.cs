@@ -63,7 +63,7 @@ namespace DAL
 
         public void addChild(BE.Child child)
         {
-            BE.Child temp = DS.DataSource.childrenList.Find(x => x.id == child.id);
+            BE.Child temp = DS.DataSource.childrenList.Find(x => x.Id == child.Id);
             if (temp == null)
                 DS.DataSource.childrenList.Add(child);
             else
@@ -71,12 +71,12 @@ namespace DAL
         }
         public void removeChild(BE.Child child)
         {
-            DS.DataSource.contractsList.RemoveAll(x => x.childId == child.id);
+            DS.DataSource.contractsList.RemoveAll(x => x.childId == child.Id);
             DS.DataSource.childrenList.Remove(child);
         }
         public void updateChild(BE.Child child)
         {
-            BE.Child temp = DS.DataSource.childrenList.Find(x => x.id == child.id);
+            BE.Child temp = DS.DataSource.childrenList.Find(x => x.Id == child.Id);
             if (temp == null)
                 throw new Exception("The is no child to update");
             DS.DataSource.childrenList.Remove(temp);
@@ -147,7 +147,7 @@ namespace DAL
 
         public BE.Child getChildByID(int childId)
         {
-            return DS.DataSource.childrenList.Find(x => x.id == childId);
+            return DS.DataSource.childrenList.Find(x => x.Id == childId);
         }
 
         public IEnumerable<BE.Contract> contrantsByCondition(Func<BE.Contract, bool> predicate = null)

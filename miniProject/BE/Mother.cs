@@ -6,15 +6,18 @@ namespace BE
 {
     public class Mother
     {
-        public int id;
-        public string lastName;
-        public string firstName;
-        public int phoneNumber;
-        public string address;
-        public string nannyRequestedAddress;
+        
+        
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public int id { get; set; }
+        public string address { get; set; }
+        public int phoneNumber { get; set; }
+        
+        public string nannyRequestedAddress { get; set; }
         public bool[] isNeedNannyToday = new bool[6];
         public TimeSpan[,] neededHours = new TimeSpan[2, 6];
-        public string notes;
+        public string notes { get; set; }
         public override string ToString()
         {
             string str = "";

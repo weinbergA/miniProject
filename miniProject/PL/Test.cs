@@ -12,7 +12,7 @@ namespace PL
         
         BE.Child moshe_cohen = new BE.Child
         {
-            id = 1234,
+            Id = 1234,
             motherId = 0987,
             firstName = "Moshe",
             lastName = "Cohen",
@@ -24,7 +24,7 @@ namespace PL
         
         BE.Child nachman_goldshtein = new BE.Child
         {
-            id = 4567,
+            Id = 4567,
             motherId = 5432,
             firstName = "Nachman",
             lastName = "Goldshtein",
@@ -35,7 +35,7 @@ namespace PL
 
         BE.Child natan_goldshtein = new BE.Child
         {
-            id = 2345,
+            Id = 2345,
             motherId = 5432,
             firstName = "Natan",
             lastName = "Goldshtein",
@@ -46,7 +46,7 @@ namespace PL
 
         BE.Child sason_zaguri = new BE.Child
         {
-            id = 4568,
+            Id = 4568,
             motherId = 4321,
             firstName = "Sason",
             lastName = "Zaguri",
