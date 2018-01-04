@@ -291,6 +291,11 @@ namespace BL
             return monthsOld(dateOfBirth) / 12;
         }
 
+        /// <summary>
+        /// <matching nannies by time/>
+        /// </summary>
+        /// <param name="mother"></param>
+        /// <returns></returns>
         public List<BE.Nanny> listOfMatchingNannies(BE.Mother mother)
         {
             List<BE.Nanny> matchingNannies = new List<BE.Nanny>();
@@ -322,25 +327,28 @@ namespace BL
 
             return matchingNannies;
         }
-        double overlapping(TimeSpan[,] nanny, TimeSpan[,] mother)
+        double matchingHours(TimeSpan[,] nanny, TimeSpan[,] mother)
         {
-            int sumOverlapping = 0;
+            int sumMatchingHours = 0;
             for (int i = 0; i < 6; i++)
             {
-                sumOverlapping += Math.Min(nanny[i, 1].Hours, mother[i, 1].Hours) -
+                sumMatchingHours += Math.Min(nanny[i, 1].Hours, mother[i, 1].Hours) -
                     Math.Max(nanny[i, 0].Hours, mother[i, 0].Hours);
             }
-            return sumOverlapping;
+            return sumMatchingHours;
         }
         public List<BE.Nanny> bestDefaultsNannies(BE.Mother mother)
         {
+            
             List<BE.Nanny> nannies = new List<BE.Nanny>();
+
+            ///<object contain nanny with the matching hours of her and the mother/>
             var overlappingHours = from nanny in nanniesList()
                                    select new
                                    {
                                        Nanny = nanny,
                                        matchingHours =
-                                       overlapping(nanny.workingHours, mother.neededHours)
+                                       matchingHours(nanny.workingHours, mother.neededHours)
                                    };
 
             var list = overlappingHours.ToList();
@@ -363,7 +371,8 @@ namespace BL
             else
                 nannies = bestDefaultsNannies(mother);
 
-            var nanniesDistans = (from nanny in nannies
+            ///<object contains nanny with her distance to mother/>
+            var nanniesDistance = (from nanny in nannies
                                   select new
                                   {
                                       thisNanny = nanny,
@@ -372,9 +381,9 @@ namespace BL
 
             nannies = new List<BE.Nanny>();
 
-            nanniesDistans.Sort((x, y) => x.distance.CompareTo(y.distance));
+            nanniesDistance.Sort((x, y) => x.distance.CompareTo(y.distance));
 
-            foreach (var item in nanniesDistans)
+            foreach (var item in nanniesDistance)
                 nannies.Add(item.thisNanny);
 
             return nannies;

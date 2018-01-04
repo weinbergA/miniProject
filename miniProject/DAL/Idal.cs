@@ -35,6 +35,8 @@ namespace DAL
 
         BE.Nanny GetNannyById(int nannyId);
 
+        
+
         IEnumerable<BE.Contract> contrantsByCondition(Func<BE.Contract, bool> predicate = null);
 
        
@@ -43,7 +45,7 @@ namespace DAL
     {
         public static Idal GetDal()
         {
-            return new Dal_imp();
+            return Dal_imp.dal();
         }
     }
 }

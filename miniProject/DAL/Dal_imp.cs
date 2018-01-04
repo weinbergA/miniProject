@@ -156,5 +156,16 @@ namespace DAL
                 return DS.DataSource.contractsList.AsEnumerable();
             return DS.DataSource.contractsList.Where(predicate);
         }
+
+        private static Dal_imp _Dal_imp = null;
+
+        private Dal_imp() { }
+
+        public static Idal dal()
+        {
+            if (_Dal_imp == null)
+                _Dal_imp= new Dal_imp();
+            return _Dal_imp;
+        }
     }
 }
