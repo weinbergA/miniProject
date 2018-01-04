@@ -33,6 +33,8 @@ namespace DAL
         BE.Mother motherOfTheChild(int childId);
         BE.Mother getMotherById(int motherId);
 
+        BE.Nanny GetNannyById(int nannyId);
+
         IEnumerable<BE.Contract> contrantsByCondition(Func<BE.Contract, bool> predicate = null);
 
        

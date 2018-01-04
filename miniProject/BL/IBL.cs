@@ -6,6 +6,7 @@ namespace BL
 {
     public interface IBL
     {
+        
         void addNanny(BE.Nanny nanny);
         void removeNanny(BE.Nanny nanny);
         void updateNanny(BE.Nanny nanny);

@@ -354,31 +354,31 @@ namespace BL
             return nannies;
         }
 
-        //public List<BE.Nanny> bestNannies(BE.Mother mother)
-        //{
-        //    List<BE.Nanny> nannies = new List<BE.Nanny>();
+        public List<BE.Nanny> bestNannies(BE.Mother mother)
+        {
+            List<BE.Nanny> nannies = new List<BE.Nanny>();
 
-        //    if (listOfMatchingNannies(mother).Count > 5)
-        //        nannies = listOfMatchingNannies(mother);
-        //    else
-        //        nannies = bestDefaultsNannies(mother);
+            if (listOfMatchingNannies(mother).Count > 5)
+                nannies = listOfMatchingNannies(mother);
+            else
+                nannies = bestDefaultsNannies(mother);
 
-        //    var nanniesDistans = (from nanny in nannies
-        //                          select new
-        //                          {
-        //                              thisNanny = nanny,
-        //                              distance = Main.Distance.Getdistance(mother.address, nanny.address)
-        //                          }).ToList();
+            var nanniesDistans = (from nanny in nannies
+                                  select new
+                                  {
+                                      thisNanny = nanny,
+                                      distance = GoogleApiFunc.CalcDistance(mother.address, nanny.address, TravelType.Walking)
+                                  }).ToList();
 
-        //    nannies = new List<BE.Nanny>();
+            nannies = new List<BE.Nanny>();
 
-        //    nanniesDistans.Sort((x, y) => x.distance.CompareTo(y.distance));
+            nanniesDistans.Sort((x, y) => x.distance.CompareTo(y.distance));
 
-        //    foreach (var item in nanniesDistans)
-        //        nannies.Add(item.thisNanny);
+            foreach (var item in nanniesDistans)
+                nannies.Add(item.thisNanny);
 
-        //    return nannies;
-        //}
+            return nannies;
+        }
 
         public List<BE.Child> childWithoutNanny()
         {
@@ -437,18 +437,18 @@ namespace BL
             return query;
         }
 
-        //public IEnumerable<IGrouping<double, BE.Contract>> contractsByDistance(bool sorting = false)
-        //{
-        //    List<BE.Contract> contracts = contractsList();
+        public IEnumerable<IGrouping<double, BE.Contract>> contractsByDistance(bool sorting = false)
+        {
+            List<BE.Contract> contracts = contractsList();
 
-        //    if (sorting)
-        //        contracts.Sort((x, y) => Main.Distance.Getdistance(dal.getMotherById(x.motherId).address, dal.GetNannyById(x.nannyId).address).CompareTo(Main.Distance.Getdistance(dal.getMotherById(y.motherId).address, dal.GetNannyById(y.nannyId).address)));
+            if (sorting)
+                contracts.Sort((x, y) => GoogleApiFunc.CalcDistance(dal.getMotherById(x.motherId).address, dal.GetNannyById(x.nannyId).address , TravelType.Walking).CompareTo(GoogleApiFunc.CalcDistance(dal.getMotherById(y.motherId).address, dal.GetNannyById(y.nannyId).address , TravelType.Walking)));
 
-        //    IEnumerable<IGrouping<double, BE.Contract>> query = from contract in contracts
-        //                                                        group contract by Main.Distance.Getdistance(dal.getMotherById(contract.motherId).address, dal.GetNannyById(contract.nannyId).address) % 5;
-        //    return query;
+            IEnumerable<IGrouping<double, BE.Contract>> query = from contract in contracts
+                                                                group contract by GoogleApiFunc.CalcDistance(dal.getMotherById(contract.motherId).address, dal.GetNannyById(contract.nannyId).address, TravelType.Walking) % 5;
+            return query;
 
-        //}
+        }
 
 
 
