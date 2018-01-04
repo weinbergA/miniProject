@@ -50,18 +50,18 @@
         <Label Content="hourly Rate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
         <Label  Grid.Column="2" Grid.ColumnSpan="2"  Content="enter your working hours:" HorizontalAlignment="Center" FontSize="20"/>
         <Label  Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2"  Content="Sun:" HorizontalAlignment="Center" FontSize="18"/>
-        <dg:TimePicker x:Name="enterHoures_1" Grid.Row="3" Grid.Column="2" />
-        <dg:TimePicker x:Name="leaveHoures_1" Grid.Row="3" Grid.Column="3" />
-        <dg:TimePicker x:Name="enterHoures_2" Grid.Row="5" Grid.Column="2" />
-        <dg:TimePicker x:Name="leaveHoures_2" Grid.Row="5" Grid.Column="3" />
-        <dg:TimePicker x:Name="enterHoures_3" Grid.Row="7" Grid.Column="2" />
-        <dg:TimePicker x:Name="leaveHoures_3" Grid.Row="7" Grid.Column="3" />
-        <dg:TimePicker x:Name="enterHoures_4" Grid.Row="9" Grid.Column="2" />
-        <dg:TimePicker x:Name="leaveHoures_4" Grid.Row="9" Grid.Column="3" />
-        <dg:TimePicker x:Name="enterHoures_5" Grid.Row="11" Grid.Column="2" />
-        <dg:TimePicker x:Name="leaveHoures_5" Grid.Row="11" Grid.Column="3" />
-        <dg:TimePicker x:Name="enterHoures_6" Grid.Row="13" Grid.Column="2" />
-        <dg:TimePicker x:Name="leaveHoures_6" Grid.Row="13" Grid.Column="3" Height="23" Width="100"/>
+        <dg:TimePicker x:Name="enterHoures_0" Grid.Row="3" Grid.Column="2" Height="23" Width="100" StartTime="06:00" EndTime="10:00"/>
+        <dg:TimePicker x:Name="leaveHoures_0" Grid.Row="3" Grid.Column="3" Height="23" Width="100" StartTime="13:00" EndTime="17:00"/>
+        <dg:TimePicker x:Name="enterHoures_1" Grid.Row="5" Grid.Column="2" Height="23" Width="100" StartTime="06:00" EndTime="10:00"/>
+        <dg:TimePicker x:Name="leaveHoures_1" Grid.Row="5" Grid.Column="3" Height="23" Width="100" StartTime="13:00" EndTime="17:00"/>
+        <dg:TimePicker x:Name="enterHoures_2" Grid.Row="7" Grid.Column="2" Height="23" Width="100" StartTime="06:00" EndTime="10:00"/>
+        <dg:TimePicker x:Name="leaveHoures_2" Grid.Row="7" Grid.Column="3" Height="23" Width="100" StartTime="13:00" EndTime="17:00"/>
+        <dg:TimePicker x:Name="enterHoures_3" Grid.Row="9" Grid.Column="2" Height="23" Width="100" StartTime="06:00" EndTime="10:00"/>
+        <dg:TimePicker x:Name="leaveHoures_3" Grid.Row="9" Grid.Column="3" Height="23" Width="100" StartTime="13:00" EndTime="17:00"/>
+        <dg:TimePicker x:Name="enterHoures_4" Grid.Row="11" Grid.Column="2" Height="23" Width="100" StartTime="06:00" EndTime="10:00"/>
+        <dg:TimePicker x:Name="leaveHoures_4" Grid.Row="11" Grid.Column="3" Height="23" Width="100" StartTime="13:00" EndTime="17:00"/>
+        <dg:TimePicker x:Name="enterHoures_5" Grid.Row="13" Grid.Column="2" Height="23" Width="100" StartTime="06:00" EndTime="10:00"/>
+        <dg:TimePicker x:Name="leaveHoures_5" Grid.Row="13" Grid.Column="3" Height="23" Width="100" StartTime="13:00" EndTime="17:00"/>
         <Label  Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2"  Content="Mun:" HorizontalAlignment="Center" FontSize="18"/>
         <Label  Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="2"  Content="Tue:" HorizontalAlignment="Center" FontSize="18"/>
         <Label  Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2"  Content="Wed:" HorizontalAlignment="Center" FontSize="18"/>
