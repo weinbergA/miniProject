@@ -15,7 +15,7 @@ namespace BE
         public int phoneNumber { get; set; }
         
         public string nannyRequestedAddress { get; set; }
-        public bool[] isNeedNannyToday = new bool[6];
+        public bool[] isNeedNannyToday = new bool[] { false, false, false, false, false, false };
         public TimeSpan[,] neededHours = new TimeSpan[2, 6];
         public string notes { get; set; }
         public override string ToString()

@@ -33,13 +33,5 @@ namespace BL
 
         List<BE.Nanny> listOfMatchingNannies(BE.Mother mother);
     }
-    public class FactoryBL
-    {
-        static IBL bl = null;
-        public static IBL GetBL()
-        {
-            bl = new Bl_base();
-            return bl;
-        }
-    }
+    
 }

@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="algo\GoogleApiFunc.cs" />
     <Compile Include="Bl_base.cs" />
+    <Compile Include="FactoryBL.cs" />
     <Compile Include="IBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

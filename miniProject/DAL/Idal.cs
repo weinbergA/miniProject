@@ -41,11 +41,5 @@ namespace DAL
 
        
     }
-    public class FactoryDal
-    {
-        public static Idal GetDal()
-        {
-            return Dal_imp.dal();
-        }
-    }
+    
 }
