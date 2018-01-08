@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BE;
+using BL;
 
 namespace PLWPF
 {
@@ -19,9 +21,15 @@ namespace PLWPF
     /// </summary>
     public partial class SignedNanny : Window
     {
+        Nanny nanny;
+        IBL bl;
+        
         public SignedNanny()
         {
+            nanny = new Nanny();
+            bl = FactoryBL.GetBL();
             InitializeComponent();
+            
         }
     }
 }

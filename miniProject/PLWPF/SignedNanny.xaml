@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="SignedNanny" Height="300" Width="300">
     <Grid>
-        
+        <TabControl>
+            <TabControl.Items>
+                <TabItem Header="view your children">
+                    <DataGrid x:Name="childrenList" />
+
+    </Grid>
+                </TabItem>
+            </TabControl.Items>
+        </TabControl>
     </Grid>
 </Window>

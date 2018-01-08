@@ -411,10 +411,14 @@ namespace BL
             return nannies;
         }
 
+        
 
         public IEnumerable<BE.Contract> contractsByCondition(Func<BE.Contract, bool> predicate = null)
         {
-            return dal.contrantsByCondition(predicate);
+            if (predicate == null)
+                return dal.contractsList();
+            else
+                return dal.contractsList().Where(predicate);
         }
 
         public int contractsByConditionCount(Func<BE.Contract, bool> predicate = null)
@@ -459,7 +463,14 @@ namespace BL
 
         }
 
-
+        List<BE.Child> childrenByNanny(BE.Nanny nanny)
+        {
+            int nannyId = nanny.id;
+            List<BE.Contract> contracts = contractsList().Where(x => x.nannyId == nannyId).ToList();
+            IEnumerable<BE.Child> children = from child in contracts
+                           select childrenList().First(x => x.Id == child.childId);
+            return children.ToList();
+        }
 
     }
 }
