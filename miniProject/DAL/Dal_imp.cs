@@ -140,6 +140,10 @@ namespace DAL
         {
             return DS.DataSource.mothersList.Find(x => x.id == motherId);
         }
+        public BE.Nanny getNannyById(int nannyId)
+        {
+            return DS.DataSource.nanniesList.Find(x => x.id == nannyId);
+        }
         public BE.Nanny GetNannyById(int nannyId)
         {
             return DS.DataSource.nanniesList.Find(x => x.id == nannyId);

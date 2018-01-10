@@ -31,5 +31,70 @@ namespace PLWPF
             InitializeComponent();
             
         }
+
+        private void enter_Click(object sender, RoutedEventArgs e)
+        {
+            int nannyId;
+            try
+            {
+                nannyId = Convert.ToInt32(id.ToString());
+                nanny = bl.getNannyById(nannyId);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            if (nanny == null)
+            {
+                MessageBox.Show("no nanny with such id");
+                return;
+            }
+            childrenView.IsEnabled = true;
+            update.IsEnabled = true;
+            delete.IsEnabled = true;
+        }
+
+        private void childrenView_Click(object sender, RoutedEventArgs e)
+        {
+            childrenView.Visibility = Visibility.Hidden;
+            update.Visibility = Visibility.Hidden;
+            delete.Visibility = Visibility.Hidden;
+            List<Child> childrenList = bl.childrenByNanny(nanny);
+            string str = "";
+
+            foreach(var child in childrenList)
+            {
+                str += child.firstName + " " + child.lastName + "\n";
+            }
+
+            MessageBox.Show(str);
+        }
+
+        private void update_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            Window updateNanny = new updateNanny();
+            updateNanny.DataContext = nanny;
+            updateNanny.Show();
+        }
+
+        private void delete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.removeNanny(nanny);
+                this.Close();
+                MessageBox.Show("Thanks for using our service");
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        
     }
 }

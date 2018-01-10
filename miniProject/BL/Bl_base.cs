@@ -66,6 +66,20 @@ namespace BL
         }
         public void removeMother(BE.Mother mother)
         {
+            List<BE.Child> children = childrenList().Where(x => x.motherId == mother.id).ToList();
+
+            foreach (var child in children)//deleting her children
+            {
+                try
+                {
+                    removeChild(child);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+
             try
             {
                 dal.removeMother(mother);
@@ -296,7 +310,7 @@ namespace BL
         /// </summary>
         /// <param name="mother"></param>
         /// <returns></returns>
-        public List<BE.Nanny> listOfMatchingNannies(BE.Mother mother)
+        List<BE.Nanny> listOfMatchingNannies(BE.Mother mother)
         {
             List<BE.Nanny> matchingNannies = new List<BE.Nanny>();
             foreach (var nanny in nanniesList())
@@ -337,7 +351,7 @@ namespace BL
             }
             return sumMatchingHours;
         }
-        public List<BE.Nanny> bestDefaultsNannies(BE.Mother mother)
+        List<BE.Nanny> bestDefaultsNannies(BE.Mother mother)
         {
             
             List<BE.Nanny> nannies = new List<BE.Nanny>();
@@ -362,7 +376,7 @@ namespace BL
             return nannies;
         }
 
-        public List<BE.Nanny> bestNannies(BE.Mother mother)
+        private List<BE.Nanny> bestNannies(BE.Mother mother)
         {
             List<BE.Nanny> nannies = new List<BE.Nanny>();
 
@@ -386,6 +400,16 @@ namespace BL
             foreach (var item in nanniesDistance)
                 nannies.Add(item.thisNanny);
 
+            return nannies;
+        }
+        public List<BE.Nanny> bestNannies(BE.Child child)
+        {
+            List<BE.Nanny> nannies = bestNannies(motherOfTheChild(child.Id));
+            
+            nannies = nannies.Where(x => x.maxAgeChildren > monthsOld(child.dateOfBirth)
+            && x.minAgeChildren < monthsOld(child.dateOfBirth)).ToList();
+
+            nannies = nannies.Where(x => childrenByNanny(x).Count < x.maxChildren).ToList();
             return nannies;
         }
 
@@ -463,7 +487,7 @@ namespace BL
 
         }
 
-        List<BE.Child> childrenByNanny(BE.Nanny nanny)
+        public List<BE.Child> childrenByNanny(BE.Nanny nanny)
         {
             int nannyId = nanny.id;
             List<BE.Contract> contracts = contractsList().Where(x => x.nannyId == nannyId).ToList();
@@ -471,6 +495,9 @@ namespace BL
                            select childrenList().First(x => x.Id == child.childId);
             return children.ToList();
         }
-
+        public BE.Nanny getNannyById(int nannyId)
+        {
+            return dal.getNannyById(nannyId);
+        }
     }
 }

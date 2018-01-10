@@ -22,7 +22,7 @@ namespace BL
         void addContract(BE.Child child, BE.Nanny nanny, bool isSigned);
         void removeContract(BE.Contract contract);
         void updateContract(BE.Contract contract);
-
+        List<BE.Nanny> bestNannies(BE.Child child);
         List<BE.Nanny> nanniesList();
         List<BE.Mother> mothersList();
         List<BE.Child> childrenByMother(BE.Mother mother);
@@ -34,8 +34,9 @@ namespace BL
         //BY given  id of child return his mother 
         BE.Mother motherOfTheChild(int childId);
 
-        List<BE.Child> childrenByNanny(BE.Nanny nanny);
-        List<BE.Nanny> listOfMatchingNannies(BE.Mother mother);
+        BE.Nanny getNannyById(int nannyId);
+
+        List<BE.Child> childrenByNanny(BE.Nanny nanny)
     }
     
 }

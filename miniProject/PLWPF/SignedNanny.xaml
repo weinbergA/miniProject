@@ -7,14 +7,21 @@
         mc:Ignorable="d"
         Title="SignedNanny" Height="300" Width="300">
     <Grid>
-        <TabControl>
-            <TabControl.Items>
-                <TabItem Header="view your children">
-                    <DataGrid x:Name="childrenList" />
-
-    </Grid>
-                </TabItem>
-            </TabControl.Items>
-        </TabControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Label Content="Enter your ID:" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1"/>
+        <PasswordBox x:Name="id" Grid.Row="2" Width="150"/>
+        <Button x:Name="enter" Content="sign in" Grid.Row="3" Click="enter_Click" Width="80"/>
+        <Button x:Name="childrenView" Grid.Row="4" Content="view your signed children" Click="childrenView_Click" Width="180" Height="45" IsEnabled="False" Margin="10"/>
+        <Button x:Name="update" Grid.Row="5" Content="update yours details" Click="update_Click" Width="180" Height="45" IsEnabled="False" Margin="10"/>
+        <Button x:Name="delete" Grid.Row="6" Content="delete yourself" Click="delete_Click" Width="180" Height="45" IsEnabled="False" Margin="10"/>
     </Grid>
 </Window>

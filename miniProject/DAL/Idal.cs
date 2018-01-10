@@ -28,7 +28,7 @@ namespace DAL
         List<BE.Child> childrenList();
        List<BE.Child> childrenByMother(BE.Mother mother);
         List<BE.Contract> contractsList();
-        
+        BE.Nanny getNannyById(int nannyId);
 
         //BY given  id of child return his mother 
         BE.Mother motherOfTheChild(int childId);

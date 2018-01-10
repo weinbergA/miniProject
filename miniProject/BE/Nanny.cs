@@ -19,6 +19,7 @@ namespace BE
         public bool hourlyRateAccepting { get; set; }
         public double hourlyRate { get; set; }
         public double monthlyRate { get; set; }
+
         public bool[] isWorkingToday = new bool[] { false, false, false, false, false, false};
 
 

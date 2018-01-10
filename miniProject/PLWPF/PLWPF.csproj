@@ -84,6 +84,9 @@
     <Compile Include="SignedNanny.xaml.cs">
       <DependentUpon>SignedNanny.xaml</DependentUpon>
     </Compile>
+    <Compile Include="updateNanny.xaml.cs">
+      <DependentUpon>updateNanny.xaml</DependentUpon>
+    </Compile>
     <Page Include="NewChild.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -113,6 +116,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SignedNanny.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="updateNanny.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
