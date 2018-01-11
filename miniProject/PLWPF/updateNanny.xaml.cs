@@ -29,6 +29,81 @@ namespace PLWPF
             bl = BL.FactoryBL.GetBL();
             nanny = this.DataContext as BE.Nanny;
 
+            if (nanny.isWorkingToday[0])
+                Sun.IsEnabled = true;
+            if (nanny.isWorkingToday[1])
+                Mon.IsEnabled = true;
+            if (nanny.isWorkingToday[2])
+                Tue.IsEnabled = true;
+            if (nanny.isWorkingToday[3])
+                Wed.IsEnabled = true;
+            if (nanny.isWorkingToday[4])
+                Thu.IsEnabled = true;
+            if (nanny.isWorkingToday[5])
+                Fri.IsEnabled = true;
+        }
+        public updateNanny(BE.Nanny nannyCopy)
+        {
+            
+            InitializeComponent();
+            bl = BL.FactoryBL.GetBL();
+            nanny = nannyCopy;
+            this.DataContext = nanny;
+
+            if (nanny.isWorkingToday[0])
+            {
+                Sun.IsEnabled = true;
+                Sun.IsChecked = true;
+                enterHoures_1.IsEnabled = true;
+                leaveHoures_1.IsEnabled = true;
+                enterHoures_1.Text = nanny.workingHours[0, 0].ToString(@"hh\:mm");
+                leaveHoures_1.Text = nanny.workingHours[0, 1].ToString(@"hh\:mm");
+            }
+            if (nanny.isWorkingToday[1])
+            {
+                Mon.IsEnabled = true;
+                Mon.IsChecked = true;
+                enterHoures_2.IsEnabled = true;
+                leaveHoures_2.IsEnabled = true;
+                enterHoures_2.Text = nanny.workingHours[1, 0].ToString(@"hh\:mm");
+                leaveHoures_2.Text = nanny.workingHours[1, 1].ToString(@"hh\:mm");
+            }
+            if (nanny.isWorkingToday[2])
+            {
+                Tue.IsEnabled = true;
+                Tue.IsChecked = true;
+                enterHoures_3.IsEnabled = true;
+                leaveHoures_3.IsEnabled = true;
+                enterHoures_3.Text = nanny.workingHours[2, 0].ToString(@"hh\:mm");
+                leaveHoures_3.Text = nanny.workingHours[2, 1].ToString(@"hh\:mm");
+            }
+            if (nanny.isWorkingToday[3])
+            {
+                Wed.IsEnabled = true;
+                Wed.IsChecked = true;
+                enterHoures_4.IsEnabled = true;
+                leaveHoures_4.IsEnabled = true;
+                enterHoures_4.Text = nanny.workingHours[3, 0].ToString(@"hh\:mm");
+                leaveHoures_4.Text = nanny.workingHours[3, 1].ToString(@"hh\:mm");
+            }
+            if (nanny.isWorkingToday[4])
+            {
+                Thu.IsEnabled = true;
+                Thu.IsChecked = true;
+                enterHoures_5.IsEnabled = true;
+                leaveHoures_5.IsEnabled = true;
+                enterHoures_5.Text = nanny.workingHours[4, 0].ToString(@"hh\:mm");
+                leaveHoures_5.Text = nanny.workingHours[4, 1].ToString(@"hh\:mm");
+            }
+            if (nanny.isWorkingToday[5])
+            {
+                Fri.IsEnabled = true;
+                Fri.IsChecked = true;
+                enterHoures_6.IsEnabled = true;
+                leaveHoures_6.IsEnabled = true;
+                enterHoures_6.Text = nanny.workingHours[5, 0].ToString(@"hh\:mm");
+                leaveHoures_6.Text = nanny.workingHours[5, 1].ToString(@"hh\:mm");
+            }
         }
         private void nanny_update_Click(object sender, RoutedEventArgs e)
         {
@@ -72,7 +147,8 @@ namespace PLWPF
             }
             try
             {
-                bl.addNanny(nanny);
+                bl.updateNanny(nanny);
+                MessageBox.Show("update succeeded");
                 this.Close();
             }
             catch (Exception x)

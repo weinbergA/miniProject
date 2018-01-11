@@ -11,25 +11,94 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BE;
+using BL;
 
 namespace PLWPF
 {
     /// <summary>
     /// Interaction logic for signedMother.xaml
     /// </summary>
-    public partial class signedMother : Window
+    public partial class SignedMother : Window
     {
-        public signedMother()
+        IBL bl;
+        Mother mother;
+        public SignedMother()
         {
             InitializeComponent();
+            bl = FactoryBL.GetBL();
+            mother = new Mother();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        
+
+        private void enter_Click(object sender, RoutedEventArgs e)
+        {
+            int motherId;
+            try
+            {
+                string str = id.Text;
+                motherId = int.Parse(str);
+                mother = bl.getMotherById(motherId);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            if (mother == null)
+            {
+                MessageBox.Show("no mother with such id");
+                return;
+            }
+            id.Visibility = Visibility.Hidden;
+            enterId.Visibility = Visibility.Hidden;
+            enter.Visibility = Visibility.Hidden;
+            label.Content = "Welcome " + mother.firstName + " " + mother.lastName;
+            label.Visibility = Visibility.Visible;
+        }
+
+        private void childrenView_Click(object sender, RoutedEventArgs e)
+        {
+            string str = "";
+            List<Child> children = bl.childrenByMother(mother);
+            foreach (var child in children)
+                str += child.firstName + "\n";
+            MessageBox.Show(str);
+        }
+
+        private void addChild_Click(object sender, RoutedEventArgs e)
+        {
+            newChild child = new newChild(mother.id);
+            child.Show();
+        }
+
+        private void findNanny_Click(object sender, RoutedEventArgs e)
         {
 
-            System.Windows.Data.CollectionViewSource motherViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("motherViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // motherViewSource.Source = [generic data source]
+        }
+
+        private void updateChild_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        private void deleteChild_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void update_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void delete_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
+

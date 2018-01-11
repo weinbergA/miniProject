@@ -36,7 +36,9 @@ namespace BL
 
         BE.Nanny getNannyById(int nannyId);
 
-        List<BE.Child> childrenByNanny(BE.Nanny nanny)
+        BE.Mother getMotherById(int motherId);
+
+        List<BE.Child> childrenByNanny(BE.Nanny nanny);
     }
     
 }

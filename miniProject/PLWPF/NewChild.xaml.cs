@@ -28,8 +28,16 @@ namespace PLWPF
             bl = BL.FactoryBL.GetBL();
             this.DataContext = child;
         }
+        public newChild(int motherId)
+        {
+            InitializeComponent();
+            child = new BE.Child();
+            child.motherId = motherId;
+            bl = BL.FactoryBL.GetBL();
+            this.DataContext = child;
+        }
 
-       
+
 
         private void addChild_Click(object sender, RoutedEventArgs e)
         {

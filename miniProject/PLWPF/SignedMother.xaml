@@ -1,14 +1,37 @@
-﻿<Window
+﻿<Window x:Class="PLWPF.SignedMother"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
-        xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.signedMother"
         mc:Ignorable="d"
-        Title="signedMother" Height="450" Width="625" Loaded="Window_Loaded">
-    <Window.Resources>
-        <CollectionViewSource x:Key="motherViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Mother}, CreateList=True}"/>
-    </Window.Resources>
-    <Grid/>
+        Title="SignedMother" Height="380" Width="400">
+
+    <Grid x:Name="grid" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="label" Grid.ColumnSpan="2" Visibility="Hidden" Grid.Row="2" HorizontalAlignment="Center"/>
+        <Label x:Name="enterId" Grid.ColumnSpan="2" Content="Enter your ID:" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBox x:Name="id" Grid.ColumnSpan="2" Grid.Row="2" Width="150"/>
+        <Button x:Name="enter"  Grid.ColumnSpan="2" Content="sign in" Grid.Row="3" Click="enter_Click" Width="80"/>
+        <Button x:Name="childrenView" Click="childrenView_Click" Grid.Row="4" Content="view your children" Width="180" Height="45" IsEnabled="False" Margin="10"/>
+        <Button x:Name="addChild" Click="addChild_Click" Grid.Row="4" Grid.Column="1" Content="add child" Width="180" Height="45" IsEnabled="False" Margin="10"/>
+        <Button x:Name="findNanny" Click="findNanny_Click" Grid.Row="5"  Content="find nanny for a child" Width="180" Height="45" IsEnabled="False" Margin="10"/>
+        <Button x:Name="updateChild" Click="updateChild_Click" Grid.Row="5" Grid.Column="1" Content="update child" Width="180" Height="45" IsEnabled="False" Margin="10"/>
+        <Button x:Name="deleteChild" Click="deleteChild_Click" Grid.Row="6" Content="delete child" Width="180" Height="45" IsEnabled="False" Margin="10"/>
+        <Button x:Name="update" Click="update_Click" Grid.Row="6" Grid.Column="1" Content="update your details" Width="180" Height="45" IsEnabled="False" Margin="10"/>
+        <Button x:Name="delete" Click="delete_Click" Grid.Row="7" Grid.ColumnSpan="2" Content="delete yourself" Width="180" Height="45" IsEnabled="False" Margin="10"/>
+    </Grid>
 </Window>

@@ -37,7 +37,8 @@ namespace PLWPF
             int nannyId;
             try
             {
-                nannyId = Convert.ToInt32(id.ToString());
+                string str = id.Text;
+                nannyId = int.Parse(str);
                 nanny = bl.getNannyById(nannyId);
             }
             catch (Exception ex)
@@ -50,6 +51,13 @@ namespace PLWPF
                 MessageBox.Show("no nanny with such id");
                 return;
             }
+            enterId.Visibility = Visibility.Hidden;
+            id.Visibility = Visibility.Hidden;
+            enter.Visibility = Visibility.Hidden;
+            
+            label.Content = "Welcome " + nanny.firstName + " " + nanny.lastName;
+            label.Visibility = Visibility.Visible;
+            
             childrenView.IsEnabled = true;
             update.IsEnabled = true;
             delete.IsEnabled = true;
@@ -57,12 +65,13 @@ namespace PLWPF
 
         private void childrenView_Click(object sender, RoutedEventArgs e)
         {
-            childrenView.Visibility = Visibility.Hidden;
-            update.Visibility = Visibility.Hidden;
-            delete.Visibility = Visibility.Hidden;
             List<Child> childrenList = bl.childrenByNanny(nanny);
             string str = "";
-
+            if (childrenList.Count == 0)
+            {
+                MessageBox.Show("you have no children yet");
+                return;
+            }
             foreach(var child in childrenList)
             {
                 str += child.firstName + " " + child.lastName + "\n";
@@ -74,9 +83,8 @@ namespace PLWPF
         private void update_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            Window updateNanny = new updateNanny();
-            updateNanny.DataContext = nanny;
-            updateNanny.Show();
+            Window update = new updateNanny(nanny);
+            update.Show();
         }
 
         private void delete_Click(object sender, RoutedEventArgs e)

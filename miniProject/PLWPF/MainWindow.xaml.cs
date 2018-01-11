@@ -23,8 +23,43 @@ namespace PLWPF
         public MainWindow()
         {
             InitializeComponent();
+            init();
         }
-
+        private void init()
+        {
+            BL.IBL bl = BL.FactoryBL.GetBL();
+            BE.Nanny farcha_mazali = new BE.Nanny
+            {
+                id = 3458,
+                lastName = "Farcha",
+                firstName = "Mazali",
+                dateOfBirth = new DateTime(1989, 10, 25),
+                phoneNumber = 0504157895,
+                address = "סלנט 20 ירושלים",
+                isElevator = false,
+                floor = 3,
+                experienceYears = 5,
+                maxChildren = 3,
+                minAgeChildren = 3,
+                maxAgeChildren = 36,
+                hourlyRateAccepting = true,
+                hourlyRate = 12,
+                monthlyRate = 4500,
+                isWorkingToday = new bool[] { true, true, true, true, true, true },
+                workingHours = new TimeSpan[,]
+              {
+                  { new TimeSpan(7,0,0), new TimeSpan(16,30,0)},
+                  { new TimeSpan(7,0,0), new TimeSpan(16,30,0)},
+                  { new TimeSpan(7,0,0), new TimeSpan(16,0,0)},
+                  { new TimeSpan(7,0,0), new TimeSpan(16,0,0)},
+                  { new TimeSpan(7,0,0), new TimeSpan(16,30,0)},
+                  { new TimeSpan(7,0,0), new TimeSpan(13,30,0)}
+             },
+                tamatHolidays = true,
+                reviews = ""
+            };
+            bl.addNanny(farcha_mazali);
+        }
         private void motherEnter_Click(object sender, RoutedEventArgs e)
         {
             motherEnter.Visibility = Visibility.Collapsed;

@@ -499,5 +499,9 @@ namespace BL
         {
             return dal.getNannyById(nannyId);
         }
+        public BE.Mother getMotherById(int motherId)
+        {
+            return mothersList().First(x => x.id == motherId);
+        }
     }
 }

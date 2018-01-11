@@ -58,7 +58,7 @@
         <CheckBox x:Name="Thu" Checked="Thu_Checked" Unchecked="Thu_Unchecked" Margin="120,0,0,0" VerticalAlignment="Center" Grid.Row="10" Grid.Column="2"/>
         <CheckBox x:Name="Fri" Checked="Fri_Checked" Unchecked="Fri_Unchecked" Margin="120,0,0,0" VerticalAlignment="Center" Grid.Row="12" Grid.Column="2"/>
 
-        <dg:TimePicker x:Name="enterHoures_1" Grid.Row="3" Grid.Column="2" IsEnabled="False" />
+        <dg:TimePicker x:Name="enterHoures_1" Grid.Row="3" Grid.Column="2" IsEnabled="False"  />
         <dg:TimePicker x:Name="leaveHoures_1" Grid.Row="3" Grid.Column="3" IsEnabled="False"/>
         <dg:TimePicker x:Name="enterHoures_2" Grid.Row="5" Grid.Column="2" IsEnabled="False"/>
         <dg:TimePicker x:Name="leaveHoures_2" Grid.Row="5" Grid.Column="3" IsEnabled="False"/>
@@ -98,7 +98,7 @@
         <TextBox x:Name="reviewsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="15" Text="{Binding reviews, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=true }" VerticalAlignment="Center" Width="120"/>
         <Label Content="tamat Holidays:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="16" VerticalAlignment="Center"/>
         <CheckBox x:Name="tamatHolidaysCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding tamatHolidays, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=true }" Margin="3" Grid.Row="16" VerticalAlignment="Center"/>
-        <Button x:Name="nanny_update" Content="join" Grid.Row="17"  HorizontalAlignment="Stretch" Grid.ColumnSpan="4" Click="nanny_update_Click"/>
+        <Button x:Name="nanny_update" Content="update" Grid.Row="17"  HorizontalAlignment="Stretch" Grid.ColumnSpan="4" Click="nanny_update_Click"/>
 
     </Grid>
 
