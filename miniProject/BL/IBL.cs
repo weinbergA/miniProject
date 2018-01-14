@@ -28,6 +28,7 @@ namespace BL
         List<BE.Child> childrenByMother(BE.Mother mother);
         List<BE.Contract> contractsList();
 
+        List<BE.Nanny> bestNannies(BE.Mother mother);
         List<BE.Child> childrenList();
         IEnumerable<BE.Contract> contractsByCondition(Func<BE.Contract, bool> predicate = null);
 

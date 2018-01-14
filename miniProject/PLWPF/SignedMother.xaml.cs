@@ -82,6 +82,11 @@ namespace PLWPF
 
         private void findNanny_Click(object sender, RoutedEventArgs e)
         {
+            if (bl.contractsList().FindAll(x => x.childId == child.Id).Count != 0)
+            {
+                MessageBox.Show("this child has already a nanny");
+                return;
+            }
 
         }
 

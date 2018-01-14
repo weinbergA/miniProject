@@ -75,6 +75,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="chooseNanny.xaml.cs">
+      <DependentUpon>chooseNanny.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewChild.xaml.cs">
       <DependentUpon>NewChild.xaml</DependentUpon>
     </Compile>
@@ -93,6 +96,10 @@
     <Compile Include="updateNanny.xaml.cs">
       <DependentUpon>updateNanny.xaml</DependentUpon>
     </Compile>
+    <Page Include="chooseNanny.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NewChild.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -380,7 +380,7 @@ namespace BL
             return GoogleApiFunc.CalcDistance(source, dest, TravelType.Walking);
         }
 
-        private List<BE.Nanny> bestNannies(BE.Mother mother)
+        public List<BE.Nanny> bestNannies(BE.Mother mother)
         {
             List<BE.Nanny> nannies = new List<BE.Nanny>();
 
