@@ -23,6 +23,7 @@ namespace PLWPF
     {
         IBL bl;
         Mother mother;
+        Child child;
         public SignedMother()
         {
             InitializeComponent();
@@ -57,6 +58,11 @@ namespace PLWPF
             enter.Visibility = Visibility.Hidden;
             label.Content = "Welcome " + mother.firstName + " " + mother.lastName;
             label.Visibility = Visibility.Visible;
+            update.IsEnabled = true;
+            delete.IsEnabled = true;
+            childrenView.IsEnabled = true;
+            manage.IsEnabled = true;
+            manageChildren.IsEnabled = true;
         }
 
         private void childrenView_Click(object sender, RoutedEventArgs e)
@@ -81,23 +87,66 @@ namespace PLWPF
 
         private void updateChild_Click(object sender, RoutedEventArgs e)
         {
-
+            Window updateChild = new newChild(mother.id);
         }
 
 
         private void deleteChild_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                bl.removeChild(child);
+                children.Items.Remove(children.SelectedItem);
+                MessageBox.Show("child was deleted susccesfully");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void update_Click(object sender, RoutedEventArgs e)
         {
-
+            Window updateMoter = new UpdateMother(mother);
+            updateMoter.Show();
         }
 
         private void delete_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                bl.removeMother(mother);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
+        private void manageChildren_Checked(object sender, RoutedEventArgs e)
+        {
+            addChild.IsEnabled = true;
+            List<Child> childrenOfMother = bl.childrenByMother(mother);
+            if (childrenOfMother.Count == 0)
+            {
+                MessageBox.Show("you have no children yet");
+                return;
+            }
+            updateChild.IsEnabled = true;
+            deleteChild.IsEnabled = true;
+            findNanny.IsEnabled = true;
+            foreach (var child in childrenOfMother)
+            {
+                ListBoxItem newChild = new ListBoxItem();
+                newChild.Content = child.firstName;
+                children.Items.Add(newChild);
+            }
+            children.IsEnabled = true;
+        }
+
+        private void children_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            child = bl.childrenByMother(mother).First(x => x.firstName == children.SelectedItem.ToString());
         }
     }
 }

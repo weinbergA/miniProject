@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading;
 namespace BL
 {
     public class Bl_base : IBL
@@ -375,6 +375,10 @@ namespace BL
             }
             return nannies;
         }
+        private double distance(string source, string dest)
+        {
+            return GoogleApiFunc.CalcDistance(source, dest, TravelType.Walking);
+        }
 
         private List<BE.Nanny> bestNannies(BE.Mother mother)
         {
@@ -385,19 +389,32 @@ namespace BL
             else
                 nannies = bestDefaultsNannies(mother);
 
+            double[] distances = new double[nannies.Count];
+            int i = 0;
+            Thread thread;
+            
             ///<object contains nanny with her distance to mother/>
-            var nanniesDistance = (from nanny in nannies
+            foreach(var nanny in nannies)
+            {
+                double distance = 0;
+                thread = new Thread(() => distance = GoogleApiFunc.CalcDistance(nanny.address, mother.address, TravelType.Walking));
+                thread.Start();
+                thread.Join();
+                distances[i++] = distance;
+            }
+            i = 0;
+            var nanniesDistance = from nanny in nannies
                                   select new
                                   {
                                       thisNanny = nanny,
-                                      distance = GoogleApiFunc.CalcDistance(mother.address, nanny.address, TravelType.Walking)
-                                  }).ToList();
-
+                                      distance = distances[i++]
+                                  };
+            var nanniesdistance = nanniesDistance.ToList();
             nannies = new List<BE.Nanny>();
 
-            nanniesDistance.Sort((x, y) => x.distance.CompareTo(y.distance));
+            nanniesdistance.Sort((x, y) => x.distance.CompareTo(y.distance));
 
-            foreach (var item in nanniesDistance)
+            foreach (var item in nanniesdistance)
                 nannies.Add(item.thisNanny);
 
             return nannies;

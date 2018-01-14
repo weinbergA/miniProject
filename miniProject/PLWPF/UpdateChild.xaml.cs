@@ -12,51 +12,40 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BE;
+using BL;
 
 namespace PLWPF
 {
     /// <summary>
-    /// Interaction logic for chiled.xaml
+    /// Interaction logic for UpdateChild.xaml
     /// </summary>
-    public partial class newChild : Window
+    public partial class UpdateChild : Window
     {
-        BE.Child child;
-        BL.IBL bl;
-        public newChild()
+        Child child;
+        IBL bl;
+        public UpdateChild()
         {
             InitializeComponent();
-            child = new BE.Child();
-            bl = BL.FactoryBL.GetBL();
-            this.DataContext = child;
         }
-        public newChild(int motherId)
-        {
-            InitializeComponent();
-            child = new BE.Child();
-            child.motherId = motherId;
-            bl = BL.FactoryBL.GetBL();
-            this.DataContext = child;
-        }
-        public newChild(int motherId, Child ch)
+        public UpdateChild(Child ch)
         {
             InitializeComponent();
             child = ch;
-            bl = BL.FactoryBL.GetBL();
             this.DataContext = child;
+            bl = FactoryBL.GetBL();
         }
-
-
 
         private void addChild_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                bl.addChild(child);
+                bl.updateChild(child);
+                MessageBox.Show("update succseed");
                 this.Close();
             }
-            catch(Exception x)
+            catch (Exception ex)
             {
-                MessageBox.Show(x.Message);
+                MessageBox.Show(ex.Message);
             }
         }
     }

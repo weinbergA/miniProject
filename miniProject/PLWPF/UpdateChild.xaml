@@ -4,10 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
-        xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.newChild"
+        xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.UpdateChild"
         mc:Ignorable="d"
-        Title="chiled" Height="300" Width="300">
-   
+        Title="updateChild" Height="300" Width="300">
+
     <Grid>
 
         <Grid x:Name="grid1" VerticalAlignment="Center"  HorizontalAlignment="Center" >
@@ -33,12 +33,12 @@
             <TextBox x:Name="idTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
             <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="last Name:"/>
             <TextBox x:Name="lastNameTextBox" Width="120" VerticalAlignment="Center" Text="{Binding lastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            
+
             <Label VerticalAlignment="Center" Grid.Row="5" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="special Needs:"/>
             <CheckBox x:Name="specialNeedsCheckBox" VerticalAlignment="Center" Grid.Row="5" Margin="3" IsChecked="{Binding specialNeeds, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Grid.Column="1" Content=""/>
             <Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="special Needs Descrition:"/>
             <TextBox x:Name="specialNeedsDescritionTextBox" Width="120" VerticalAlignment="Center" Text="{Binding specialNeedsDescrition, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="6" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Button  x:Name="addChild" Grid.ColumnSpan="2" Content="Add" HorizontalAlignment="Stretch"  Grid.Row="9" VerticalAlignment="Top" Click="addChild_Click" />
+            <Button  x:Name="addChild" Grid.ColumnSpan="2" Content="Update" HorizontalAlignment="Stretch"  Grid.Row="9" VerticalAlignment="Top" Click="addChild_Click" />
         </Grid>
 
     </Grid>
