@@ -87,7 +87,8 @@ namespace PLWPF
                 MessageBox.Show("this child has already a nanny");
                 return;
             }
-
+            NannyChoose nanny = new NannyChoose(mother, child);
+            nanny.Show();
         }
 
         private void updateChild_Click(object sender, RoutedEventArgs e)
@@ -142,7 +143,7 @@ namespace PLWPF
             findNanny.IsEnabled = true;
             foreach (var child in childrenOfMother)
             {
-                ListBoxItem newChild = new ListBoxItem();
+                ComboBoxItem newChild = new ComboBoxItem();
                 newChild.Content = child.firstName;
                 children.Items.Add(newChild);
             }

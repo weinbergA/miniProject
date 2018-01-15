@@ -35,7 +35,7 @@
         <Button x:Name="deleteChild" Click="deleteChild_Click" Grid.Row="6" Grid.Column="1" Content="delete child" Width="180" Height="45" IsEnabled="False" Margin="10"/>
         <Button x:Name="update" Click="update_Click" Grid.Row="8"  Content="update your details" Width="180" Height="45" IsEnabled="False" Margin="10"/>
         <Button x:Name="delete" Click="delete_Click" Grid.Row="9" Grid.ColumnSpan="2" Content="delete yourself" Width="180" Height="45" IsEnabled="False" Margin="10"/>
-        <ListBox x:Name="children" IsEnabled="False" Grid.Row="5" Grid.ColumnSpan="2" SelectionMode="Single" SelectionChanged="children_SelectionChanged"/>
+        <ComboBox x:Name="children" IsEnabled="False" Grid.Row="5" Grid.ColumnSpan="2"  SelectionChanged="children_SelectionChanged"/>
         <Label x:Name="manage" Content="manage your children" Grid.Row="4" HorizontalAlignment="Center" IsEnabled="False" Grid.ColumnSpan="2"/>
         <CheckBox x:Name="manageChildren" Grid.Row="4" Checked="manageChildren_Checked" IsChecked="False" IsEnabled="False" Margin="120,8,0,0"/>
     </Grid>
