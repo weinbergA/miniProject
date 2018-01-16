@@ -69,16 +69,16 @@ namespace PLWPF
         private void childrenView_Click(object sender, RoutedEventArgs e)
         {
             string str = "";
-            List<Child> children = bl.childrenByMother(mother);
-            foreach (var child in children)
-                str += child.firstName + "\n";
+            List<Child> childrenList = bl.childrenByMother(mother);
+            foreach (var ch in childrenList)
+                str += ch.firstName + "\n";
             MessageBox.Show(str);
         }
 
         private void addChild_Click(object sender, RoutedEventArgs e)
         {
-            newChild child = new newChild(mother.id);
-            child.Show();
+            newChild ch = new newChild(mother.id);
+            ch.Show();
         }
 
         private void findNanny_Click(object sender, RoutedEventArgs e)
@@ -104,8 +104,8 @@ namespace PLWPF
                 MessageBox.Show("please choose child");
                 return;
             }
-            Window updateChild = new UpdateChild(child);
-            updateChild.Show();
+            Window childUpdate = new UpdateChild(child);
+            childUpdate.Show();
 
         }
 
@@ -141,6 +141,8 @@ namespace PLWPF
             try
             {
                 bl.removeMother(mother);
+                MessageBox.Show("deleted  success!");
+                Close();
             }
             catch (Exception ex)
             {

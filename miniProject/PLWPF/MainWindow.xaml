@@ -17,7 +17,9 @@
         </Grid.RowDefinitions>
         <Button x:Name="Mother" Content="mother" Grid.Row="0" Click="Mother_OnClick" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Height="90" Margin="30,60,30,0"  Width="189"/>
         <Button x:Name="Nanny" Content="nanny" Grid.Row="0" Grid.Column="1" Click="Nanny_OnClick" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Height="90" Margin="30,60,30,0"  Width="189"/>
-        <Button x:Name="MotherSignIn" Content="sign in" Visibility="Hidden" Grid.Row="1" Width="80" Height="20" HorizontalAlignment="Left" Margin="30,5,0,0" Click="MotherSignIn_OnClick" />
-        <Button x:Name="MotherRegister" Content="register" Visibility="Hidden" Grid.Row="1" Width="80" Height="20" HorizontalAlignment="Left" Margin="130,5,0,0" Click="MotherRegister_OnClick" />
+        <Button x:Name="MotherSignIn" Visibility="Hidden" Content="sign in"  Grid.Row="1" Width="80" Height="20" HorizontalAlignment="Left" Margin="30,5,0,0" Click="MotherSignIn_OnClick" />
+        <Button x:Name="MotherRegister" Visibility="Hidden" Content="register"  Grid.Row="1" Width="80" Height="20" HorizontalAlignment="Left" Margin="135,5,0,0" Click="MotherRegister_OnClick" />
+        <Button x:Name="NannySignIn" Visibility="Hidden" Content="sign in" Grid.Column="1" Grid.Row="1" Width="80" Height="20" HorizontalAlignment="Left" Margin="30,5,0,0" Click="NannySignIn_OnClick" />
+        <Button x:Name="NannyRegister" Visibility="Hidden" Content="register"  Grid.Column="1" Grid.Row="1" Width="80" Height="20" HorizontalAlignment="Left" Margin="135,5,0,0" Click="NannyRegister_OnClick" />
     </Grid>
 </Window>

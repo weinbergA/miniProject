@@ -206,22 +206,43 @@ namespace PLWPF
 
         private void Mother_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            NannyRegister.Visibility = Visibility.Hidden;
+            NannySignIn.Visibility = Visibility.Hidden;
+            MotherRegister.Visibility = Visibility.Visible;
+            MotherSignIn.Visibility = Visibility.Visible;
         }
 
         private void Nanny_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            NannyRegister.Visibility = Visibility.Visible;
+            NannySignIn.Visibility = Visibility.Visible;
+            MotherRegister.Visibility = Visibility.Hidden;
+            MotherSignIn.Visibility = Visibility.Hidden;
         }
 
         private void MotherSignIn_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            SignedMother mother = new SignedMother();
+            mother.Show();
         }
 
         private void MotherRegister_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            NewMother mother = new NewMother();
+            mother.Show();
+           
+        }
+
+        private void NannyRegister_OnClick(object sender, RoutedEventArgs e)
+        {
+            NewNanny nanny = new NewNanny();
+            nanny.Show();
+        }
+
+        private void NannySignIn_OnClick(object sender, RoutedEventArgs e)
+        {
+            SignedNanny nanny = new SignedNanny();
+            nanny.Show();
         }
     }
 }
