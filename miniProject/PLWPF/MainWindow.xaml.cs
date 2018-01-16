@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 using BL;
 
 namespace PLWPF
@@ -20,19 +10,19 @@ namespace PLWPF
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         IBL bl;
         public MainWindow()
         {
             InitializeComponent();
             bl = FactoryBL.GetBL();
-            init();
+            Init();
         }
-        private void init()
+        private void Init()
         {
             
-            BE.Child moshe_cohen = new BE.Child
+            BE.Child mosheCohen = new BE.Child
             {
                 Id = 1234,
                 motherId = 0987,
@@ -44,7 +34,7 @@ namespace PLWPF
 
             };
 
-            BE.Child nachman_goldshtein = new BE.Child
+            BE.Child nachmanGoldshtein = new BE.Child
             {
                 Id = 4567,
                 motherId = 5532,
@@ -55,7 +45,7 @@ namespace PLWPF
                 specialNeedsDescrition = "",
             };
 
-            BE.Child natan_goldshtein = new BE.Child
+            BE.Child natanGoldshtein = new BE.Child
             {
                 Id = 2345,
                 motherId = 5532,
@@ -66,7 +56,7 @@ namespace PLWPF
                 specialNeedsDescrition = "",
             };
 
-            BE.Child sason_zaguri = new BE.Child
+            BE.Child sasonZaguri = new BE.Child
             {
                 Id = 4568,
                 motherId = 4321,
@@ -76,7 +66,7 @@ namespace PLWPF
                 specialNeeds = false,
                 specialNeedsDescrition = "",
             };
-            BE.Mother sara_cohen = new BE.Mother
+            BE.Mother saraCohen = new BE.Mother
             {
                 id = 0987,
                 lastName = "Cohen",
@@ -84,8 +74,8 @@ namespace PLWPF
                 phoneNumber = 0583227800,
                 address = "הפסגה 16 ירושלים",
                 nannyRequestedAddress = "בית הכרם ירושלים",
-                isNeedNannyToday = new bool[] { true, true, false, false, true, true },
-                neededHours = new TimeSpan[,]
+                isNeedNannyToday = new[] { true, true, false, false, true, true },
+                neededHours = new[,]
            {
            { new TimeSpan(8,15,0), new TimeSpan(14,30,0)},
            { new TimeSpan(8,45,0), new TimeSpan(15,30,0)},
@@ -97,7 +87,7 @@ namespace PLWPF
                 notes = ""
             };
 
-            BE.Mother odel_goldshtein = new BE.Mother
+            BE.Mother odelGoldshtein = new BE.Mother
             {
                 id = 5532,
                 lastName = "Odel",
@@ -105,8 +95,8 @@ namespace PLWPF
                 phoneNumber = 0583223400,
                 address = "החומה השלישית 12 ירושלים",
                 nannyRequestedAddress = "הרובע הארמני ירושלים",
-                isNeedNannyToday = new bool[] { true, true, false, false, true, true },
-                neededHours = new TimeSpan[,]
+                isNeedNannyToday = new[] { true, true, false, false, true, true },
+                neededHours = new[,]
                   {
                    { new TimeSpan(8,15,0), new TimeSpan(14,30,0)},
                    { new TimeSpan(8,45,0), new TimeSpan(15,30,0)},
@@ -118,7 +108,7 @@ namespace PLWPF
                 notes = ""
             };
 
-            BE.Mother masuda_zaguri = new BE.Mother
+            BE.Mother masudaZaguri = new BE.Mother
             {
                 id = 5432,
                 lastName = "Masuda",
@@ -126,8 +116,8 @@ namespace PLWPF
                 phoneNumber = 0586789400,
                 address = "מגרש הרוסים ירושלים",
                 nannyRequestedAddress = "מגרש הרוסים ירושלים",
-                isNeedNannyToday = new bool[] { true, true, false, false, true, true },
-                neededHours = new TimeSpan[,]
+                isNeedNannyToday = new[] { true, true, false, false, true, true },
+                neededHours = new[,]
                   {
                    { new TimeSpan(8,15,0), new TimeSpan(14,30,0)},
                    { new TimeSpan(8,45,0), new TimeSpan(15,30,0)},
@@ -139,7 +129,7 @@ namespace PLWPF
                 notes = ""
             };
 
-            BE.Nanny agi_mishol = new BE.Nanny
+            BE.Nanny agiMishol = new BE.Nanny
             {
                 id = 3456,
                 lastName = "Mishol",
@@ -156,8 +146,8 @@ namespace PLWPF
                 hourlyRateAccepting = true,
                 hourlyRate = 12,
                 monthlyRate = 4500,
-                isWorkingToday = new bool[] { true, true, true, true, true, true },
-                workingHours = new TimeSpan[,]
+                isWorkingToday = new[] { true, true, true, true, true, true },
+                workingHours = new[,]
             {
             { new TimeSpan(8,0,0), new TimeSpan(14,30,0)},
             { new TimeSpan(8,0,0), new TimeSpan(15,30,0)},
@@ -170,7 +160,7 @@ namespace PLWPF
                 reviews = ""
             };
 
-            BE.Nanny farcha_mazali = new BE.Nanny
+            BE.Nanny farchaMazali = new BE.Nanny
             {
                 id = 3458,
                 lastName = "Farcha",
@@ -187,8 +177,8 @@ namespace PLWPF
                 hourlyRateAccepting = true,
                 hourlyRate = 12,
                 monthlyRate = 4500,
-                isWorkingToday = new bool[] { true, true, true, true, true, true },
-                workingHours = new TimeSpan[,]
+                isWorkingToday = new[] { true, true, true, true, true, true },
+                workingHours = new[,]
                   {
                   { new TimeSpan(7,0,0), new TimeSpan(16,30,0)},
                   { new TimeSpan(7,0,0), new TimeSpan(16,30,0)},
@@ -200,74 +190,38 @@ namespace PLWPF
                 tamatHolidays = true,
                 reviews = ""
             };
-            bl.addChild(moshe_cohen);
-            bl.addChild(sason_zaguri);
-            bl.addChild(nachman_goldshtein);
-            bl.addChild(natan_goldshtein);
+            bl.addChild(mosheCohen);
+            bl.addChild(sasonZaguri);
+            bl.addChild(nachmanGoldshtein);
+            bl.addChild(natanGoldshtein);
 
-            bl.addNanny(agi_mishol);
-            bl.addNanny(farcha_mazali);
+            bl.addNanny(agiMishol);
+            bl.addNanny(farchaMazali);
 
 
-            bl.addMother(sara_cohen);
-            bl.addMother(odel_goldshtein);
-            bl.addMother(masuda_zaguri);
-        }
-        private void motherEnter_Click(object sender, RoutedEventArgs e)
-        {
-            motherEnter.Visibility = Visibility.Collapsed;
-            nannyEnter.Visibility = Visibility.Hidden;
-            newMother.Visibility = Visibility.Visible;
-            signedMother.Visibility = Visibility.Visible;
-            motherTextBlock.Visibility = Visibility.Visible;
-            back.Visibility = Visibility.Visible;
+            bl.addMother(saraCohen);
+            bl.addMother(odelGoldshtein);
+            bl.addMother(masudaZaguri);
         }
 
-        private void nannyEnter_Click(object sender, RoutedEventArgs e)
+        private void Mother_OnClick(object sender, RoutedEventArgs e)
         {
-            nannyEnter.Visibility = Visibility.Hidden;
-            motherEnter.Visibility = Visibility.Collapsed;
-            signedNanny.Visibility = Visibility.Visible;
-            newNanny.Visibility = Visibility.Visible;
-            nannyTextBlock.Visibility = Visibility.Visible;
-            back.Visibility = Visibility.Visible;
+            throw new NotImplementedException();
         }
 
-        private void signedMother_Click(object sender, RoutedEventArgs e)
+        private void Nanny_OnClick(object sender, RoutedEventArgs e)
         {
-            Window signedMotherWindow = new SignedMother();
-            signedMotherWindow.Show();
+            throw new NotImplementedException();
         }
 
-        private void newMother_Click(object sender, RoutedEventArgs e)
+        private void MotherSignIn_OnClick(object sender, RoutedEventArgs e)
         {
-            Window newMotherWindow = new NewMother();
-            newMotherWindow.Show();
+            throw new NotImplementedException();
         }
 
-        private void back_Click(object sender, RoutedEventArgs e)
+        private void MotherRegister_OnClick(object sender, RoutedEventArgs e)
         {
-            motherEnter.Visibility = Visibility.Visible;
-            nannyEnter.Visibility = Visibility.Visible;
-            newMother.Visibility = Visibility.Hidden;
-            newNanny.Visibility = Visibility.Hidden;
-            signedNanny.Visibility = Visibility.Hidden;
-            signedMother.Visibility = Visibility.Hidden;
-            motherTextBlock.Visibility = Visibility.Hidden;
-            nannyTextBlock.Visibility = Visibility.Hidden;
-            back.Visibility = Visibility.Hidden;
-        }
-
-        private void signedNanny_Click(object sender, RoutedEventArgs e)
-        {
-            Window signedNannyWindow = new SignedNanny();
-            signedNannyWindow.Show();
-        }
-
-        private void newNanny_Click(object sender, RoutedEventArgs e)
-        {
-            Window newNannyWindow = new NewNanny();
-            newNannyWindow.Show();
+            throw new NotImplementedException();
         }
     }
 }

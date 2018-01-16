@@ -6,27 +6,18 @@
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="625">
-    <Grid x:Name="MainGrid" Margin="0,2,0,-2">
-        <Button x:Name="motherEnter" Content="מצאי מטפלת" FontWeight="UltraLight" 
-                FontSize="35" HorizontalAlignment="Center"  VerticalAlignment="Center" 
-                Width="300"  Height="150" Click="motherEnter_Click"></Button> 
-        <Button x:Name="nannyEnter"  
-                HorizontalAlignment="Left"  VerticalAlignment="Bottom" 
-                Margin="20" Width="88" Height="58" Click="nannyEnter_Click">
-            <StackPanel>
-                <TextBlock HorizontalAlignment="Center">?מטפלת</TextBlock>
-                <TextBlock HorizontalAlignment="Center">!הצטרפי אלינו</TextBlock>
-            </StackPanel>
-        </Button>
-        <Grid HorizontalAlignment="Center" Height="150"  VerticalAlignment="Center" Width="300">
-            <Button x:Name="signedMother" Content="?כבר רשומה" VerticalAlignment="Bottom"  Visibility="Hidden" Click="signedMother_Click" Height="40"/>
-            <Button x:Name="newMother" Content="קבלי גישה למאגר" VerticalAlignment="Top" Visibility="Hidden" Click="newMother_Click" Height="110" />
-            <Button x:Name="signedNanny" Content="כניסה לאזור האישי" VerticalAlignment="Bottom"  Visibility="Hidden" Click="signedNanny_Click" Height="60"/>
-            <Button x:Name="newNanny" Content="?חדשה" VerticalAlignment="Top" Visibility="Hidden" Click="newNanny_Click" Height="90" />
-        </Grid>
-        <TextBlock  x:Name="motherTextBlock" Visibility="Hidden" TextWrapping="Wrap" Text="?אמא" TextAlignment="Center"   Margin="281,115,281,0"/>
-        <TextBlock  x:Name="nannyTextBlock" Visibility="Hidden" TextWrapping="Wrap" Text="?מטפלת" TextAlignment="Center"   Margin="281,115,281,0"/>
-        <Button x:Name="back" Visibility="Hidden" Content="חזרה" HorizontalAlignment="Left" Margin="30,23,0,0" VerticalAlignment="Top" Width="75" Click="back_Click"/>
-
+    <Grid x:Name="MainGrid" Margin="50" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="Mother" Content="mother" Grid.Row="0" Click="Mother_OnClick" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Height="90" Margin="30,60,30,0"  Width="189"/>
+        <Button x:Name="Nanny" Content="nanny" Grid.Row="0" Grid.Column="1" Click="Nanny_OnClick" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Height="90" Margin="30,60,30,0"  Width="189"/>
+        <Button x:Name="MotherSignIn" Content="sign in" Visibility="Hidden" Grid.Row="1" Width="80" Height="20" HorizontalAlignment="Left" Margin="30,5,0,0" Click="MotherSignIn_OnClick" />
+        <Button x:Name="MotherRegister" Content="register" Visibility="Hidden" Grid.Row="1" Width="80" Height="20" HorizontalAlignment="Left" Margin="130,5,0,0" Click="MotherRegister_OnClick" />
     </Grid>
 </Window>

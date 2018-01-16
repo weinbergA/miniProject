@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace PLWPF
 {
@@ -18,7 +11,7 @@ namespace PLWPF
     /// Interaction logic for NewMother.xaml
     /// </summary>
     
-    public partial class NewMother : Window
+    public partial class NewMother
     {
         private List<string> errorMessages = new List<string>();
         BE.Mother mother;
@@ -28,40 +21,58 @@ namespace PLWPF
             InitializeComponent();
             mother = new BE.Mother();
             bl = BL.FactoryBL.GetBL();
-            this.DataContext = mother;
+            DataContext = mother;
         }
         
         private void JoinButton_Click(object sender, RoutedEventArgs e)
         {
             if(mother.isNeedNannyToday[0])
             {
-                mother.neededHours[0, 0] = enterHours0.Value.Value.TimeOfDay;
-                mother.neededHours[0, 1] = leaveHours0.Value.Value.TimeOfDay;
+                if (enterHours0.Value != null && leaveHours0.Value != null)
+                {
+                    mother.neededHours[0, 0] = enterHours0.Value.Value.TimeOfDay;
+                    mother.neededHours[0, 1] = leaveHours0.Value.Value.TimeOfDay;
+                }
             }
             if (mother.isNeedNannyToday[1])
             {
-                mother.neededHours[1, 0] = enterHours0.Value.Value.TimeOfDay;
-                mother.neededHours[1, 1] = leaveHours0.Value.Value.TimeOfDay;
+                if (enterHours1.Value != null && leaveHours1.Value != null)
+                {
+                    mother.neededHours[1, 0] = enterHours1.Value.Value.TimeOfDay;
+                    mother.neededHours[1, 1] = leaveHours1.Value.Value.TimeOfDay;
+                }
             }
             if (mother.isNeedNannyToday[2])
             {
-                mother.neededHours[2, 0] = enterHours0.Value.Value.TimeOfDay;
-                mother.neededHours[2, 1] = leaveHours0.Value.Value.TimeOfDay;
+                if (enterHours2.Value != null && leaveHours2.Value != null)
+                {
+                    mother.neededHours[2, 0] = enterHours2.Value.Value.TimeOfDay;
+                    mother.neededHours[2, 1] = leaveHours2.Value.Value.TimeOfDay;
+                }
             }
             if (mother.isNeedNannyToday[3])
             {
-                mother.neededHours[3, 0] = enterHours0.Value.Value.TimeOfDay;
-                mother.neededHours[3, 1] = leaveHours0.Value.Value.TimeOfDay;
+                if (enterHours3.Value != null && leaveHours3.Value != null)
+                {
+                    mother.neededHours[3, 0] = enterHours3.Value.Value.TimeOfDay;
+                    mother.neededHours[3, 1] = leaveHours3.Value.Value.TimeOfDay;
+                }
             }
             if (mother.isNeedNannyToday[4])
             {
-                mother.neededHours[4, 0] = enterHours0.Value.Value.TimeOfDay;
-                mother.neededHours[4, 1] = leaveHours0.Value.Value.TimeOfDay;
+                if (enterHours4.Value != null && leaveHours4.Value != null)
+                {
+                    mother.neededHours[4, 0] = enterHours4.Value.Value.TimeOfDay;
+                    mother.neededHours[4, 1] = leaveHours4.Value.Value.TimeOfDay;
+                }
             }
             if (mother.isNeedNannyToday[5])
             {
-                mother.neededHours[5, 0] = enterHours0.Value.Value.TimeOfDay;
-                mother.neededHours[5, 1] = leaveHours0.Value.Value.TimeOfDay;
+                if (enterHours5.Value != null && leaveHours5.Value != null)
+                {
+                    mother.neededHours[5, 0] = enterHours5.Value.Value.TimeOfDay;
+                    mother.neededHours[5, 1] = leaveHours5.Value.Value.TimeOfDay;
+                }
             }
             if (errorMessages.Any())
             {
@@ -74,7 +85,7 @@ namespace PLWPF
             try
             {
                 bl.addMother(mother);
-                this.Close();
+                Close();
             }
             catch (Exception ex)
             {
