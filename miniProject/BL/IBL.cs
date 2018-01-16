@@ -39,6 +39,8 @@ namespace BL
 
         BE.Mother getMotherById(int motherId);
 
+        double distance(string source, string dest);
+
         List<BE.Child> childrenByNanny(BE.Nanny nanny);
     }
     

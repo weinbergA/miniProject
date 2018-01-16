@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="SignedMother" Height="380" Width="400">
+        Title="SignedMother" Height="450" Width="420">
 
     <Grid x:Name="grid" >
         <Grid.RowDefinitions>
@@ -29,13 +29,13 @@
         <TextBox x:Name="id" Grid.ColumnSpan="2" Grid.Row="2" Width="150"/>
         <Button x:Name="enter"  Grid.ColumnSpan="2" Content="sign in" Grid.Row="3" Click="enter_Click" Width="80"/>
         <Button x:Name="childrenView" Click="childrenView_Click" Grid.Column="1" Grid.Row="8" Content="view your children" Width="180" Height="45" IsEnabled="False" Margin="10"/>
-        <Button x:Name="addChild" Click="addChild_Click" Grid.Row="6"  Content="add child" Width="180" Height="45" IsEnabled="False" Margin="10"/>
-        <Button x:Name="findNanny" Click="findNanny_Click" Grid.Row="7"  Content="find nanny for a child" Width="180" Height="45" IsEnabled="False" Margin="10"/>
-        <Button x:Name="updateChild" Click="updateChild_Click" Grid.Row="7" Grid.Column="1" Content="update child" Width="180" Height="45" IsEnabled="False" Margin="10"/>
-        <Button x:Name="deleteChild" Click="deleteChild_Click" Grid.Row="6" Grid.Column="1" Content="delete child" Width="180" Height="45" IsEnabled="False" Margin="10"/>
+        <Button x:Name="addChild" Click="addChild_Click" Grid.Row="9" Grid.Column="1"  Content="add child" Width="180" Height="45" IsEnabled="False" Margin="10"/>
+        <Button x:Name="findNanny" Click="findNanny_Click" Grid.Row="6"  Content="find nanny for a child" Width="180" Height="45" IsEnabled="False" Margin="10"/>
+        <Button x:Name="updateChild" Click="updateChild_Click" Grid.Row="6" Grid.Column="1" Content="update child" Width="180" Height="45" IsEnabled="False" Margin="10"/>
+        <Button x:Name="deleteChild" Click="deleteChild_Click" Grid.Row="7" Grid.ColumnSpan="2" Content="delete child" Width="180" Height="45" IsEnabled="False" Margin="10"/>
         <Button x:Name="update" Click="update_Click" Grid.Row="8"  Content="update your details" Width="180" Height="45" IsEnabled="False" Margin="10"/>
-        <Button x:Name="delete" Click="delete_Click" Grid.Row="9" Grid.ColumnSpan="2" Content="delete yourself" Width="180" Height="45" IsEnabled="False" Margin="10"/>
-        <ComboBox x:Name="children" IsEnabled="False" Grid.Row="5" Grid.ColumnSpan="2"  SelectionChanged="children_SelectionChanged"/>
+        <Button x:Name="delete" Click="delete_Click" Grid.Row="9"  Content="delete yourself" Width="180" Height="45" IsEnabled="False" Margin="10"/>
+        <ComboBox x:Name="children" IsEnabled="False" Grid.Row="5" Grid.ColumnSpan="2"  SelectionChanged="children_SelectionChanged" Margin="10"/>
         <Label x:Name="manage" Content="manage your children" Grid.Row="4" HorizontalAlignment="Center" IsEnabled="False" Grid.ColumnSpan="2"/>
         <CheckBox x:Name="manageChildren" Grid.Row="4" Checked="manageChildren_Checked" IsChecked="False" IsEnabled="False" Margin="120,8,0,0"/>
     </Grid>

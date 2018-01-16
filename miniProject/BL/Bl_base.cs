@@ -375,7 +375,7 @@ namespace BL
             }
             return nannies;
         }
-        private double distance(string source, string dest)
+        public double distance(string source, string dest)
         {
             return GoogleApiFunc.CalcDistance(source, dest, TravelType.Walking);
         }

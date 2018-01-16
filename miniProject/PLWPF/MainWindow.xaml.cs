@@ -47,7 +47,7 @@ namespace PLWPF
             BE.Child nachman_goldshtein = new BE.Child
             {
                 Id = 4567,
-                motherId = 5432,
+                motherId = 5532,
                 firstName = "Nachman",
                 lastName = "Goldshtein",
                 dateOfBirth = new DateTime(2017, 08, 01),
@@ -58,7 +58,7 @@ namespace PLWPF
             BE.Child natan_goldshtein = new BE.Child
             {
                 Id = 2345,
-                motherId = 5432,
+                motherId = 5532,
                 firstName = "Natan",
                 lastName = "Goldshtein",
                 dateOfBirth = new DateTime(2016, 04, 24),

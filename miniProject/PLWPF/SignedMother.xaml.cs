@@ -63,6 +63,7 @@ namespace PLWPF
             childrenView.IsEnabled = true;
             manage.IsEnabled = true;
             manageChildren.IsEnabled = true;
+            addChild.IsEnabled = true;
         }
 
         private void childrenView_Click(object sender, RoutedEventArgs e)
@@ -82,6 +83,11 @@ namespace PLWPF
 
         private void findNanny_Click(object sender, RoutedEventArgs e)
         {
+            if(child == null)
+            {
+                MessageBox.Show("please choose child");
+                return;
+            }
             if (bl.contractsList().FindAll(x => x.childId == child.Id).Count != 0)
             {
                 MessageBox.Show("this child has already a nanny");
@@ -93,16 +99,29 @@ namespace PLWPF
 
         private void updateChild_Click(object sender, RoutedEventArgs e)
         {
-            Window updateChild = new newChild(mother.id);
+            if (child == null)
+            {
+                MessageBox.Show("please choose child");
+                return;
+            }
+            Window updateChild = new UpdateChild(child);
+            updateChild.Show();
+
         }
 
 
         private void deleteChild_Click(object sender, RoutedEventArgs e)
         {
+            if (child == null)
+            {
+                MessageBox.Show("please choose child");
+                return;
+            }
             try
             {
                 bl.removeChild(child);
                 children.Items.Remove(children.SelectedItem);
+                children.SelectedItem = null;
                 MessageBox.Show("child was deleted susccesfully");
             }
             catch (Exception ex)
@@ -131,7 +150,7 @@ namespace PLWPF
 
         private void manageChildren_Checked(object sender, RoutedEventArgs e)
         {
-            addChild.IsEnabled = true;
+            
             List<Child> childrenOfMother = bl.childrenByMother(mother);
             if (childrenOfMother.Count == 0)
             {
@@ -152,7 +171,9 @@ namespace PLWPF
 
         private void children_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            child = bl.childrenByMother(mother).First(x => x.firstName == children.SelectedItem.ToString());
+            string str = children.SelectedItem.ToString();
+            string[] name = str.Split(' ');
+            child = bl.childrenByMother(mother).First(x => x.firstName == name[1]);
         }
     }
 }

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BE;
 using BL;
+using System.Threading;
 
 namespace PLWPF
 {
@@ -47,10 +48,15 @@ namespace PLWPF
 
         private void details_Click(object sender, RoutedEventArgs e)
         {
+            double distance = 0;
+            var thread = new Thread(() => distance = bl.distance(nanny.address, mother.address));
+            thread.Start();
+            thread.Join();
             string str = "";
             str += nanny.firstName + " " + nanny.lastName + "\n";
             str += "phone number: " + nanny.phoneNumber + "\n";
             str += "address: " + nanny.address + "\n";
+            str += "distance from you: " + distance/1000 + "km\n";
             str += "floor:" + nanny.floor + "\n";
             if (nanny.isElevator)
                 str += "building has elevator\n";
