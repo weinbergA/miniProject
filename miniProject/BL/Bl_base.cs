@@ -285,7 +285,7 @@ namespace BL
         {
             try
             {
-                return dal.motherOfTheChild(childId);
+                return dal.MotherOfTheChild(childId);
             }
 
             catch (Exception ex)

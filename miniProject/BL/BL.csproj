@@ -58,7 +58,7 @@
       <Name>BE</Name>
     </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{8524464e-ba1b-4652-b8cf-dbe81c5b1a4b}</Project>
+      <Project>{be81fd20-5e70-417c-994c-4af79b120242}</Project>
       <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>

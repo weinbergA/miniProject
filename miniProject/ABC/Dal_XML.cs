@@ -1,17 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
-using System.Linq;
+using System.Xml.Linq;
 
 namespace DAL
 {
-
-    public class Dal_imp : Idal
+    class DalXml: Idal
     {
+        private XElement childRoot;
+        private XElement contractRoot;
+        private XElement motherRoot;
+        private XElement nannyRoot;
+        private string childPath = @"ChildXml.xml";
+        private string contractPath = @"ContractPath.xml";
+        private string motherPath = @"motherXml.xml";
+        private string nannyPath = @"nannyXml.xml";
+
+
         static int contractNumberStrat = 12345678;
         public void addNanny(BE.Nanny nanny)
         {
-            
+
             BE.Nanny temp = DS.DataSource.nanniesList.Find(x => x.id == nanny.id);
             if (temp == null)
                 DS.DataSource.nanniesList.Add(nanny);
@@ -161,15 +171,86 @@ namespace DAL
             return DS.DataSource.contractsList.Where(predicate);
         }
 
-        private static Dal_imp _Dal_imp = null;
+        private static DalXml _Dal_imp = null;
 
-        private Dal_imp() { }
+        private DalXml()
+        {
+            if (!File.Exists(childPath))
+                CreateChildFile();
+            else
+                LoadChildFile();
+            if (!File.Exists(contractPath))
+                CreateContractFile();
+            else
+                LoadContractFile();
+            if (!File.Exists(motherPath))
+                CreateMotherFile();
+            else
+                LoadMotherFile();
+
+        }
+
+        private void LoadMotherFile()
+        {
+            try
+            {
+                motherRoot = XElement.Load(motherPath);
+            }
+            catch 
+            {
+                throw new Exception("mother file loaded problem");
+            }
+        }
+
+        private void CreateMotherFile()
+        {
+            motherRoot = new XElement("mothers");
+            motherRoot.Save(motherPath);
+        }
+
+        private void LoadContractFile()
+        {
+            try
+            {
+                contractRoot = XElement.Load(contractPath);
+            }
+            catch 
+            {
+                throw new Exception("contract file load problem");
+            }
+        }
+
+        private void CreateContractFile()
+        {
+            contractRoot = new XElement("contracts");
+            contractRoot.Save(contractPath);
+        }
+
+        private void LoadChildFile()
+        {
+            try
+            {
+                childRoot = XElement.Load(childPath);
+            }
+            catch 
+            {
+                throw new Exception("child file load problem");
+            }
+            
+        }
+
+        private void CreateChildFile()
+        {
+            childRoot = new XElement("children");
+            childRoot.Save(childPath);
+        }
 
         public static Idal dal()
         {
             if (_Dal_imp == null)
-                _Dal_imp= new Dal_imp();
+                _Dal_imp = new DalXml();
             return _Dal_imp;
         }
-    }
+    
+}
 }
