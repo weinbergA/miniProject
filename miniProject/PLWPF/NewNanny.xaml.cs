@@ -26,6 +26,7 @@ namespace PLWPF
         {
             InitializeComponent();
             nanny = new BE.Nanny();
+            nanny.dateOfBirth = DateTime.Now.AddYears(-18);
             bl = BL.FactoryBL.GetBL();
             this.DataContext = nanny;
             

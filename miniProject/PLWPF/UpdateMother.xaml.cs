@@ -33,7 +33,8 @@ namespace PLWPF
             InitializeComponent();
             bl = FactoryBL.GetBL();
             mother = motherDetails;
-            this.DataContext = mother;
+            DataContext = mother;
+            phoneNumberTextBox.Text = mother.phoneNumber.ToString().Insert(0, "0");
             if (mother.isNeedNannyToday[0])
             {
                 Sun.IsEnabled = true;
@@ -91,6 +92,7 @@ namespace PLWPF
         }
         private void JoinButton_Click(object sender, RoutedEventArgs e)
         {
+            mother.phoneNumber = int.Parse(phoneNumberTextBox.Text);
             if (mother.isNeedNannyToday[0])
             {
                 mother.neededHours[0, 0] = enterHours0.Value.Value.TimeOfDay;
@@ -129,6 +131,8 @@ namespace PLWPF
                 MessageBox.Show(arr);
                 return;
             }
+
+            
             try
             {
                 bl.updateMother(mother);

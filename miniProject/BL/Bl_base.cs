@@ -25,8 +25,12 @@ namespace BL
                 throw new Exception(ex.Message);
             }
         }
+
         public void removeNanny(BE.Nanny nanny)
         {
+            if (contractsList().FindAll(x => x.nannyId == nanny.id).Count > 0)
+                throw new Exception("please cancel all your contract before deleting");
+
             try
             {
                 dal.removeNanny(nanny);
@@ -41,9 +45,23 @@ namespace BL
 
         public void updateNanny(BE.Nanny nanny)
         {
+            string str = "";
+            double distance = 0;
+            Thread thread = new Thread(() => distance = GoogleApiFunc.CalcDistance(nanny.address,
+                nanniesList().First(x => x.id == nanny.id).address,
+                TravelType.Walking));
+            thread.Start();
+            thread.Join();
+
+            if (distance > 1000)
+                str += "update succseed but you have to update all the mother about your new address";
+
+
             try
             {
                 dal.updateNanny(nanny);
+                if(str != "")
+                    throw new Exception(str);
             }
 
             catch (Exception ex)
@@ -54,6 +72,9 @@ namespace BL
 
         public void addMother(BE.Mother mother)
         {
+            if (mother.id < 1000)
+                throw new Exception("wrong id");
+
             try
             {
                 dal.addMother(mother);
@@ -93,9 +114,15 @@ namespace BL
 
         public void updateMother(BE.Mother mother)
         {
+            string str = "";
+            if (mother.phoneNumber != mothersList().First(x => x.id == mother.id).phoneNumber)
+                str += "please update your nanny with the your new number";
+                
             try
             {
                 dal.updateMother(mother);
+                if (str != "")
+                    throw new Exception(str);
             }
 
             catch (Exception ex)
@@ -109,6 +136,7 @@ namespace BL
         {
             if (monthsOld(child.dateOfBirth) < 3)
                 throw new Exception("The child can't be under 3 months");
+
             try
             {
                 dal.addChild(child);
@@ -122,6 +150,9 @@ namespace BL
         }
         public void removeChild(BE.Child child)
         {
+            if (contractsList().FindAll(x => x.childId == child.Id).Count > 0)
+                throw new Exception("please cancel the contract before delete child");
+
             try
             {
                 dal.removeChild(child);
@@ -153,6 +184,9 @@ namespace BL
             BE.Contract contract = new BE.Contract();
             contract.motherId = mother.id;
             contract.nannyId = nanny.id;
+            contract.childId = child.Id;
+            contract.contrcatBeggining = DateTime.Now;
+            contract.contractFinshing = DateTime.Now.AddYears(1);
 
             if ((contractsList().FindAll(x => x.childId == child.Id)).Count != 0)
                 throw new Exception("This child  already has a nanny");
@@ -195,9 +229,13 @@ namespace BL
         }
         public void removeContract(BE.Contract contract)
         {
+            
+
             try
             {
                 dal.removeContract(contract);
+                string str = "you are welcome to find new nanny";
+                throw new Exception(str);
             }
 
             catch (Exception ex)
@@ -208,6 +246,9 @@ namespace BL
         }
         public void updateContract(BE.Contract contract)
         {
+            if (contract.contrcatBeggining.Date != DateTime.Now.Date)
+                throw new Exception("contract must start today");
+
             try
             {
                 dal.updateContract(contract);

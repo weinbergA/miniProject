@@ -142,6 +142,8 @@ namespace DAL
 
         public void addNanny(BE.Nanny nanny)
         {
+            if(nanniesList().FindAll(x=> x.id == nanny.id).Count != 0)
+                throw new Exception("cand add nanny there is nanny with such id");
             XElement isWorkingToday = new XElement("workingDays");
             XElement workingHours = new XElement("workingHours");
 
@@ -203,6 +205,9 @@ namespace DAL
 
         public void addMother(BE.Mother mother)
         {
+            if (mothersList().FindAll(x => x.id == mother.id).Count != 0)
+                throw new Exception("tjere is mother with such id");
+
             XElement firstName = new XElement("firstName", mother.firstName);
             XElement lastName = new XElement("lastName", mother.lastName);
             XElement id = new XElement("id", mother.id);
@@ -252,6 +257,9 @@ namespace DAL
 
         public void addChild(BE.Child child)
         {
+            if(childrenList().FindAll(x => x.Id == child.Id).Count != 0)
+                throw new Exception("there is child with such id");
+
             XElement id = new XElement("id", child.Id);
             XElement motherId = new XElement("motherId", child.motherId);
             XElement firstName = new XElement("firstName", child.firstName);
@@ -302,7 +310,7 @@ namespace DAL
             XElement firstMeeting = new XElement("firstMeeting", ToXMLstring(contract.firstMeeting));
             XElement isContractSighed = new XElement("signed", ToXMLstring(contract.isContractSighed));
             XElement hourlyRate = new XElement("hourlyRate", contract.hourlyRate);
-            XElement monthlyRate = new XElement("monthlyRate", contract.HourlyRate);
+            XElement monthlyRate = new XElement("monthlyRate", contract.monthlyRate);
             XElement monthlyOrHourly = new XElement("monthlyOrHourly", ToXMLstring(contract.monthlyOrHourly));
             XElement contrcatBeggining = new XElement("begin", contract.contrcatBeggining.ToString(@"MM\/dd\/yyyy"));
             XElement contractFinshing = new XElement("end", contract.contractFinshing.ToString(@"MM\/dd\/yyyy"));

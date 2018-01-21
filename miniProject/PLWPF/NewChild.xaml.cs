@@ -26,6 +26,7 @@ namespace PLWPF
         {
             InitializeComponent();
             child = new BE.Child();
+            child.dateOfBirth = DateTime.Now;
             bl = BL.FactoryBL.GetBL();
             this.DataContext = child;
         }
@@ -33,9 +34,10 @@ namespace PLWPF
         {
             InitializeComponent();
             child = new BE.Child();
+            child.dateOfBirth = DateTime.Now;
             child.motherId = motherId;
             bl = BL.FactoryBL.GetBL();
-            this.DataContext = child;
+            DataContext = child;
         }
         public newChild(int motherId, Child ch)
         {

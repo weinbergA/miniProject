@@ -28,7 +28,7 @@ namespace PLWPF
             InitializeComponent();
             bl = BL.FactoryBL.GetBL();
             nanny = this.DataContext as BE.Nanny;
-
+            
             if (nanny.isWorkingToday[0])
                 Sun.IsEnabled = true;
             if (nanny.isWorkingToday[1])
@@ -49,6 +49,7 @@ namespace PLWPF
             bl = BL.FactoryBL.GetBL();
             nanny = nannyCopy;
             this.DataContext = nanny;
+            phoneNumberTextBox.Text = nanny.phoneNumber.ToString().Insert(0, "0");
 
             if (nanny.isWorkingToday[0])
             {
@@ -107,6 +108,7 @@ namespace PLWPF
         }
         private void nanny_update_Click(object sender, RoutedEventArgs e)
         {
+            nanny.phoneNumber = int.Parse(phoneNumberTextBox.ToString());
             if (nanny.isWorkingToday[0])
             {
                 nanny.workingHours[0, 0] = enterHoures_1.Value.Value.TimeOfDay;
@@ -151,6 +153,7 @@ namespace PLWPF
                 MessageBox.Show("update succeeded");
                 this.Close();
             }
+
             catch (Exception x)
             {
                 MessageBox.Show(x.Message);
