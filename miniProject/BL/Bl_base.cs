@@ -496,10 +496,16 @@ namespace BL
             List<BE.Contract> contracts = contractsList();
 
             if (sorting)
-                contracts.Sort((x, y) => GoogleApiFunc.CalcDistance(dal.getMotherById(x.motherId).address, dal.GetNannyById(x.nannyId).address , TravelType.Walking).CompareTo(GoogleApiFunc.CalcDistance(dal.getMotherById(y.motherId).address, dal.GetNannyById(y.nannyId).address , TravelType.Walking)));
+                contracts.Sort((x, y) =>
+                    GoogleApiFunc
+                        .CalcDistance(dal.getMotherById(x.motherId).address, dal.GetNannyById(x.nannyId).address,
+                            TravelType.Walking).CompareTo(GoogleApiFunc.CalcDistance(
+                            dal.getMotherById(y.motherId).address, dal.GetNannyById(y.nannyId).address,
+                            TravelType.Walking)));
 
             IEnumerable<IGrouping<double, BE.Contract>> query = from contract in contracts
-                                                                group contract by GoogleApiFunc.CalcDistance(dal.getMotherById(contract.motherId).address, dal.GetNannyById(contract.nannyId).address, TravelType.Walking) % 5;
+                group contract by GoogleApiFunc.CalcDistance(dal.getMotherById(contract.motherId).address,
+                                      dal.GetNannyById(contract.nannyId).address, TravelType.Walking) % 5;
             return query;
 
         }

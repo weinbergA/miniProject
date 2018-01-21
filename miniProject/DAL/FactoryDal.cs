@@ -8,7 +8,7 @@ namespace DAL
     {
         public static Idal GetDal()
         {
-            return Dal_imp.dal();
+            return DalXml.dal();
         }
     }
 }

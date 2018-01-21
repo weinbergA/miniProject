@@ -20,10 +20,10 @@ namespace BE
         public double hourlyRate { get; set; }
         public double monthlyRate { get; set; }
 
-        public bool[] isWorkingToday = new bool[] { false, false, false, false, false, false};
+        public bool[] isWorkingToday = new bool[6];
 
 
-        public TimeSpan[,] workingHours = new TimeSpan[2, 6];
+        public TimeSpan[,] workingHours = new TimeSpan[6, 2];
         public bool tamatHolidays { get; set; }
         public string reviews { get; set; }
 

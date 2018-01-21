@@ -17,7 +17,7 @@ namespace PLWPF
         {
             InitializeComponent();
             bl = FactoryBL.GetBL();
-            Init();
+            //Init();
         }
         private void Init()
         {
