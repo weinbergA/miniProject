@@ -50,7 +50,7 @@
             <Label Content="Wed:" Grid.Row="4" Grid.Column="0"/>
             <Label Content="Thu:" Grid.Row="5" Grid.Column="0"/>
             <Label Content="Fri:" Grid.Row="6" Grid.Column="0"/>
-            <CheckBox x:Name="Sun" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="Sun_Checked" Unchecked="Sun_Unchecked"/>
+            <CheckBox x:Name="Sun" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Checked="Sun_Checked" Unchecked="Sun_Unchecked" Grid.ColumnSpan="2" Margin="0,7.667,79.667,7.667"/>
             <CheckBox x:Name="Mon" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="Mon_Checked" Unchecked="Mon_Unchecked"/>
             <CheckBox x:Name="Tue" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="Tue_Checked" Unchecked="Tue_Unchecked"/>
             <CheckBox x:Name="Wed" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="Wed_Checked" Unchecked="Wed_Unchecked"/>
