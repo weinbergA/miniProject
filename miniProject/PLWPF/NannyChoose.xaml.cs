@@ -54,7 +54,7 @@ namespace PLWPF
             thread.Join();
             string str = "";
             str += nanny.firstName + " " + nanny.lastName + "\n";
-            str += "phone number: " + nanny.phoneNumber + "\n";
+            str += "phone number: " + nanny.phoneNumber.ToString().Insert(0,"0") + "\n";
             str += "address: " + nanny.address + "\n";
             str += "distance from you: " + distance/1000 + "km\n";
             str += "floor:" + nanny.floor + "\n";

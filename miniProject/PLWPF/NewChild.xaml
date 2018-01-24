@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:PLWPF"
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.newChild"
         mc:Ignorable="d"
@@ -26,7 +27,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="date Of Birth:"/>
-            <DatePicker x:Name="dateOfBirthDatePicker" VerticalAlignment="Center" SelectedDate="{Binding dateOfBirth, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="1"/>
+            <DatePicker x:Name="dateOfBirthDatePicker"  VerticalAlignment="Center" SelectedDate="{Binding dateOfBirth, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="1"/>
             <Label VerticalAlignment="Center" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="first Name:"/>
             <TextBox x:Name="firstNameTextBox" Width="120" VerticalAlignment="Center" Text="{Binding firstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true ,UpdateSourceTrigger=LostFocus}" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
             <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Id:"/>

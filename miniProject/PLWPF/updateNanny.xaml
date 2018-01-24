@@ -41,7 +41,7 @@
         <Label Content="address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
         <TextBox x:Name="addressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding address, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=true }" VerticalAlignment="Center" Width="120"/>
         <Label Content="date Of Birth:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-        <DatePicker x:Name="dateOfBirthDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="2" SelectedDate="{Binding dateOfBirth, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=true }" VerticalAlignment="Center"/>
+        <DatePicker x:Name="dateOfBirthDatePicker" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="2" SelectedDate="{Binding dateOfBirth, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=true }" VerticalAlignment="Center"/>
         <Label Content="experience Years:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
         <TextBox x:Name="experienceYearsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="7" Text="{Binding experienceYears, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=true }" VerticalAlignment="Center" Width="120"/>
         <Label Content="first Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center"/>
@@ -78,7 +78,7 @@
         <TextBox x:Name="hourlyRateTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="8" Text="{Binding hourlyRate, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=true }" VerticalAlignment="Center" Width="120"/>
         <Label Content="hourly Rate Accepting:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
         <CheckBox x:Name="hourlyRateAcceptingCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding hourlyRateAccepting, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=true }" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
-        <Label Content="id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+        <Label Content="id:" Grid.Column="0" IsEnabled="False" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
         <TextBox x:Name="idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding id, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=true }" VerticalAlignment="Center" Width="120"/>
         <Label Content="is Elevator:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
         <CheckBox x:Name="isElevatorCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding isElevator, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=true }" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
@@ -93,7 +93,7 @@
         <Label Content="monthly Rate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="13" VerticalAlignment="Center"/>
         <TextBox x:Name="monthlyRateTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="13" Text="{Binding monthlyRate, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=true }" VerticalAlignment="Center" Width="120"/>
         <Label Content="phone Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="14" VerticalAlignment="Center"/>
-        <TextBox x:Name="phoneNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="14" Text="{Binding phoneNumber, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=true }" VerticalAlignment="Center" Width="120"/>
+        <TextBox x:Name="phoneNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="14"  VerticalAlignment="Center" Width="120"/>
         <Label Content="reviews:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="15" VerticalAlignment="Center"/>
         <TextBox x:Name="reviewsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="15" Text="{Binding reviews, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=true }" VerticalAlignment="Center" Width="120"/>
         <Label Content="tamat Holidays:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="16" VerticalAlignment="Center"/>
